@@ -283,8 +283,8 @@ table tr th {
     margin-bottom: 30px;
 }
 #cssmenu > ul {
-    background: url('images/bg.png');
     box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.05);
+    float: right;
 }
 #cssmenu.align-right > ul > li {
     float: right;
@@ -473,6 +473,7 @@ only screen and (min-resolution: 2dppx) and (max-width: 1024px) {
     }
     #cssmenu > ul {
         display: none;
+        float: none;
     }
     #cssmenu > ul.open {
         display: block;

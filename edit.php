@@ -49,7 +49,20 @@ include 'header.php';
 		</p>
 		<p>
 			<label>Supervisor:</label>
-			<input name="supervisor"  maxlength="32"value="<?php echo $row['currentSupervisor'] ?>" />
+			<select name="supervisor">
+			<?php
+			$query2 = "SELECT firstname,lastname FROM supervisors";
+			$result2 = mysqli_query($connect,$query2);
+			while ($row2 = mysqli_fetch_array($result2,MYSQLI_ASSOC)) {
+			  echo "<option value='".ucfirst($row2['firstname'])." ".ucfirst($row2['lastname'])."'";
+			  if (($row['currentSupervisor']) == ucfirst($row2['firstname'])." ".ucfirst($row2['lastname'])) {
+			  	echo " selected=\"selected\">".ucfirst($row2['firstname'])." ".ucfirst($row2['lastname'])."</option>";
+				} else {
+				  echo ">".ucfirst($row2['firstname'])." ".ucfirst($row2['lastname'])."</option>";
+				}
+			}
+			?>
+			</select>
 		</p>
 		<p>
 			<label>Phone:</label>

@@ -24,7 +24,7 @@ if ($result = mysqli_query($connect,$query)) {
 		echo "<td>".ucfirst($row['firstname']) . " " . ucfirst($row['lastname']) . "</td>";
 		echo "<td>".ucfirst($row['currentSupervisor'])."</td>";
 		echo "<td>".ucfirst($row['department'])."</td>";
-		if ($row['activated'] == 1) { echo "<td>Activate</td>"; } else { echo "<td>Inactive</td>"; }
+		if ($row['activated'] == 1) { echo "<td>Active</td>"; } else { echo "<td>Inactive</td>"; }
 		if ($row['activated'] == 0) {
 			echo "<td>Disabled</td>";
 		} else {

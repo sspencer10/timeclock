@@ -17,7 +17,6 @@ require_once 'functions.php';
 		   <li><a href='index.php'><span>Home</span></a></li>
 		   <?php if (!isLoggedIn()) { echo "<li><a href='register.php'>Register</a></li>"; } ?>
 		   <?php if (isLoggedIn()) {
-						echo "<li><a href='profile.php'>My Profile</a></li>";
 						if (isAdministrator()) {
 							echo "<li class='has-sub'><a href='#'>Admin</a>
 								<ul>
@@ -26,26 +25,12 @@ require_once 'functions.php';
 								</ul>
 							</li>";
 						}
-						echo "<li><a href='logout.php'>Logout</a></li>";
+						echo "<li class='has-sub'><a href='profile.php'>Welcome, ";getFirstName()."</a>";
+						echo "<ul>
+						<li><a href='profile.php'>My Profile</a></li>
+						<li><a href='logout.php'>Logout</a></li>
+						</ul>";
 					 } ?>
 		</ul>
 	</div>
-<!-- <nav class="clearfix">
-		<ul class="clearfix">
-			<li><a href="index.php">Home</a></li>
-			<?php if (!isLoggedIn()) { echo "<li><a href='register.php'>Register</a></li>"; } ?>
-			<?php if (isLoggedIn()) {
-				echo "<li><a href='profile.php'>My Profile</a></li>";
-				if (isAdministrator()) {
-					echo "<li><a href='adminUsers.php'>Admin Panel</a>
-						<ul>
-							<li><a href='#'>Import</a></li>
-						</ul>
-					</li>";
-				}
-				echo "<li><a href='logout.php'>Logout</a></li>";
-			 } ?>	
-		</ul>
-		<a href="#" id="pull">Menu</a>
-	</nav> -->
 	<div class="container">

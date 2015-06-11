@@ -20,8 +20,8 @@ if (($handle = fopen($file, "r")) !== FALSE) {
 			if ($data[0]) { 
 				mysqli_query($connect, "INSERT INTO supervisors (firstname, lastname) VALUES 
 					( 
-						'".addslashes($data[0])."', 
-						'".addslashes($data[1])."' 
+						'".sanitize($data[0])."', 
+						'".sanitize($data[1])."' 
 						) 
 				"); 
 			} 
