@@ -13,6 +13,33 @@ $('#cssmenu').prepend('<div id="menu-button">Menu</div>');
 });
 } )( jQuery );
 
+//adding hour totals
+var totalsByRow = [0, 0, 0, 0, 0, 0, 0, 0];
+var totalsByCol = [0, 0, 0, 0, 0, 0, 0, 0];
+$(document).ready(function() {
+
+    var $dataRows = $("#hoursTable tr:not('.totalColumn, .titlerow')");
+
+    $dataRows.each(function(i) {
+        $(this).find('td:not(.totalRow)').each(function(j) {
+            totalsByCol[j] += parseInt($(this).html());
+            totalsByRow[i] += parseInt($(this).html());
+        });
+    });
+    
+    for (var i = 0; i < totalsByCol.length - 1; i++) {
+        totalsByCol[totalsByCol.length - 1] += totalsByCol[i];       
+    }    
+
+    $("#hoursTable td.totalCol").each(function(i) {
+        $(this).html("" + totalsByCol[i]);
+    });
+
+    $("#hoursTable td.totalRow").each(function(i) {
+        $(this).html("" + totalsByRow[i]);
+    });
+});
+
 (function($) {
 	$.fn.autoSubmit = function(options) {
 		return $.each(this, function() {

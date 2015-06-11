@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+var totalsByRow = [0, 0, 0, 0, 0, 0, 0, 0];
+var totalsByCol = [0, 0, 0, 0, 0, 0, 0, 0];
+$(document).ready(function() {
+
+    var $dataRows = $("#hoursTable tr:not('.totalColumn, .titlerow')");
+
+    $dataRows.each(function(i) {
+        $(this).find('td:not(.totalRow)').each(function(j) {
+            totalsByCol[j] += parseInt($(this).html());
+            totalsByRow[i] += parseInt($(this).html());
+        });
+    });
+    
+    for (var i = 0; i < totalsByCol.length - 1; i++) {
+        totalsByCol[totalsByCol.length - 1] += totalsByCol[i];       
+    }    
+
+    $("#hoursTable td.totalCol").each(function(i) {
+        $(this).html("total:" + totalsByCol[i]);
+    });
+
+    $("#hoursTable td.totalRow").each(function(i) {
+        $(this).html("total:" + totalsByRow[i]);
+    });
+});
+</script>
+    <title></title>
+</head>
+<body>
+    <table id="hoursTable" width="300" border="1">
+    <tr class="titlerow">
+        <td>Apple</td>
+        <td>Orange</td>
+        <td>Watermelon</td>
+        <td>Strawberry</td>
+        <td>Total By Row</td>
+    </tr>
+    <tr>
+        <td class="rowAA">1</td>
+        <td class="rowAA">2</td>
+        <td class="rowBB">3</td>
+        <td class="rowBB">4</td>
+        <td class="totalRow"></td>
+    </tr>
+    <tr>
+        <td class="rowAA">1</td>
+        <td class="rowAA">2</td>
+        <td class="rowBB">3</td>
+        <td class="rowBB">4</td>
+        <td class="totalRow"></td>
+    </tr>
+    <tr>
+        <td class="rowAA">1</td>
+        <td class="rowAA">5</td>
+        <td class="rowBB">3</td>
+        <td class="rowBB">4</td>
+        <td class="totalRow"></td>
+    </tr>
+    <tr class="totalColumn">
+        <td class="totalCol">Total:</td>
+        <td class="totalCol">Total:</td>
+        <td class="totalCol">Total:</td>
+        <td class="totalCol">Total:</td>
+        <td class="totalCol">Total:</td>
+    </tr>
+</table>
+
+</body>
+</html>

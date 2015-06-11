@@ -23,7 +23,7 @@ a:hover {
 	width: 960px;
 	margin: 0 auto;
 	margin-bottom: 40px;
-	padding: 10px 40px 40px 40px;
+	padding: 10px 20px 20px 20px;
 	background-color: white;
 	box-sizing: border-box;
 	border-radius: 10px;
@@ -123,6 +123,10 @@ button {
 	margin-top: 10px;
 }
 
+.time table {
+	font-size:12px;
+}
+
 table form {
 	display: inline;
 }
@@ -163,6 +167,20 @@ table tr th {
 	color: gainsboro;
 }
 
+.time {
+	float: left;
+	width: 70%;
+	padding: 20px;
+}
+
+.notification {
+	float: left;
+	width: 30%;
+	border-left: 1px solid gainsboro;
+	padding: 20px;
+	text-align: center;
+}
+
 @media (max-width: 960px) {
 	.container {
 		width: 98%;
@@ -199,7 +217,7 @@ table tr th {
 	}
 	
 	td:before { 
-		/* Now like a table header */
+		 Now like a table header 
 		position: absolute;
 		/* Top/left values mimic padding */
 		top: 6px;
@@ -214,8 +232,8 @@ table tr th {
 	td:nth-of-type(3):before { content: "Department"; }
 	td:nth-of-type(4):before { content: "Account Activated"; }
 	td:nth-of-type(5):before { content: "Privileges"; }
-	td:nth-of-type(6):before { content: "Actions"; }
-}
+	td:nth-of-type(6):before { content: "Actions"; }*/
+}*
 
 @media (max-width: 650px) {
 	.message {

@@ -8,7 +8,7 @@ require_once 'functions.php';
 	<title><?php echo $pageTitle; ?></title>
 	<link href="styles.css" rel="stylesheet" type="text/css" />
 	<meta name="viewport" content="initial-scale=1">
-	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="scripts.js"></script>
 </head>
 <body>
