@@ -182,6 +182,10 @@ table tr th {
 	color: gainsboro;
 }
 
+#searchf {
+    width: 100%;
+}
+
 .time {
 	float: left;
 	width: 70%;

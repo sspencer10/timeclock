@@ -13,6 +13,21 @@ $('#cssmenu').prepend('<div id="menu-button">Menu</div>');
 });
 } )( jQuery );
 
+$(function(){
+  $('#searchf').keyup(function(){
+    var val = $(this).val().toLowerCase();
+
+    $('td').closest('tr').hide();
+    $('td').closest('tr').each(function(){
+
+    var text = $(this).text().toLowerCase();
+      if(text.indexOf(val) !== -1){
+        $(this).show();
+      }
+    });
+  });
+});
+
 
 //adding hour totals
 var totalsByRow = [0, 0, 0, 0, 0, 0, 0, 0];

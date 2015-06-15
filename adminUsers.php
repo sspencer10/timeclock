@@ -4,6 +4,7 @@ require_once 'functions.php';
 $pageTitle = "Administrator Panel";
 include 'header.php';
 
+
 if (isLoggedIn() && isAdministrator()) {
 	
 } else {
@@ -11,7 +12,9 @@ if (isLoggedIn() && isAdministrator()) {
 	header('refresh:5,url=index.php');
 	die();
 }?>
-<h2>User Administration</h2>
+<h2>User Administration</h2><br>
+<label>Filter Results: </label><input type="search" id="searchf" placeholder="Search"/><br><br>
+<hr />
 <?php
 $query = "SELECT id,firstname,lastname,currentSupervisor,department,activated,isAdmin FROM users";
 if ($result = mysqli_query($connect,$query)) {
