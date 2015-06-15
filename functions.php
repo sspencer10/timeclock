@@ -110,6 +110,20 @@ function getLastLoginById($id) {
 	}
 }
 
+function getSupervisorsList() {
+	global $connect;
+	$query = "SELECT firstname,lastname FROM supervisors";
+	if ($result = mysqli_query($connect, $query)) {
+		echo "<select size='6' multiple>";
+		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+			echo "<option>".ucfirst($row['firstname'])." ".ucfirst($row['lastname'])."</option>";
+		}
+		echo "</select>";
+	} else {
+		return "Error retrieving last login";
+	}
+}
+
 function cleanInput($input) {
  
   $search = array(

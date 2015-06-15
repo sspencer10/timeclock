@@ -13,6 +13,7 @@ $('#cssmenu').prepend('<div id="menu-button">Menu</div>');
 });
 } )( jQuery );
 
+
 //adding hour totals
 var totalsByRow = [0, 0, 0, 0, 0, 0, 0, 0];
 var totalsByCol = [0, 0, 0, 0, 0, 0, 0, 0];

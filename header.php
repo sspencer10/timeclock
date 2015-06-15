@@ -21,7 +21,9 @@ require_once 'functions.php';
 							echo "<li class='has-sub'><a href='#'>Admin</a>
 								<ul>
 									<li><a href='adminUsers.php'>User Admin</a></li>
-									<li><a href='import.php'>Import</a></li>
+									<li><a href='manageSupervisors.php'>Supervisor Manager</a></li>
+									<li><a href='siteMessage.php'>Site-wide Message</a></li>
+									<li><a href='companyInfo.php'>Company Information</a></li>
 								</ul>
 							</li>";
 						}

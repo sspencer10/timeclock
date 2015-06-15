@@ -11,13 +11,11 @@ if (isLoggedIn() && isAdministrator()) {
 	header('refresh:5,url=index.php');
 	die();
 }?>
-
 <h2>User Administration</h2>
-
 <?php
 $query = "SELECT id,firstname,lastname,currentSupervisor,department,activated,isAdmin FROM users";
 if ($result = mysqli_query($connect,$query)) {
-	echo "<table>";
+	echo "<table id='users'>";
 	echo "<tr><th>Name</th><th>Supervisor</th><th>Department</th><th>Account Status</th><th>Privileges</th><th>Actions</th>";
 	while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 		echo "<tr>";

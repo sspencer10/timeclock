@@ -66,8 +66,8 @@ $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 			if (!empty($row['currentSupervisor'])) { echo $row['currentSupervisor']; } else { echo "None provided."; } ?>
 		</p>
 		<p>
-			<label>Company:</label>
-			<input name="company" maxlength="32" value="<?php echo $row['company'] ?>" />
+			<strong>Company:</strong>
+			<?php $p = json_decode(file_get_contents('companyName.json')); echo $p; ?>
 		</p>
 		<p>
 			<label>Department:</label>
