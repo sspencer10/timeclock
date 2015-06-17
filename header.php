@@ -32,7 +32,7 @@ require_once 'functions.php';
 						<li><a href='profile.php'>My Profile</a></li>
 						<li><a href='logout.php'>Logout</a></li>
 						</ul>";
-					 } ?>
+			} ?>
 		</ul>
 	</div>
 	<div class="container">

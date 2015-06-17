@@ -12,43 +12,41 @@ include 'header.php';
 ?>
 		<div class="time">
 		<h2>Timesheets</h2>
- 			    <table id="hoursTable" width="300" border="1">
-				    <tr class="titlerow">
-				        <th>Apple</th>
-				        <th>Orange</th>
-				        <th>Watermelon</th>
-				        <th>Strawberry</th>
-				        <th>Total By Row</th>
-				    </tr>
-				    <tr>
-				        <td class="rowAA">1</td>
-				        <td class="rowAA">2</td>
-				        <td class="rowBB">3</td>
-				        <td class="rowBB">4</td>
-				        <td class="totalRow"></td>
-				    </tr>
-				    <tr>
-				        <td class="rowAA">1</td>
-				        <td class="rowAA">2</td>
-				        <td class="rowBB">3</td>
-				        <td class="rowBB">4</td>
-				        <td class="totalRow"></td>
-				    </tr>
-				    <tr>
-				        <td class="rowAA">1</td>
-				        <td class="rowAA">5</td>
-				        <td class="rowBB">3</td>
-				        <td class="rowBB">4</td>
-				        <td class="totalRow"></td>
-				    </tr>
-				    <tr class="totalColumn">
-				        <td class="totalCol">Total:</td>
-				        <td class="totalCol">Total:</td>
-				        <td class="totalCol">Total:</td>
-				        <td class="totalCol">Total:</td>
-				        <td class="totalCol">Total:</td>
-				    </tr>
+		<hr>
+		<form action='clockIn.php' method='POST'><input type='hidden' class='clockIn' name='clockIn' /><input type='submit' value='Clock In' /></form>
+		<form action='clockOut.php' method='POST'><input type='hidden' class='clockOut' name='clockOut' /><input type='submit' value='Clock Out' /></form><br>
+ 		<div class="clear"></div>
+ 		<table>
+ 			    <tr>
+ 			    	<th>In Time</th>
+ 			    	<th>Out Time</th>
+ 			    	<th>Total Hours</th>
+ 			    </tr>	    
+ 			    <?php
+		$query = "SELECT timeIn,timeOut FROM time_entries WHERE user_id = '".$_SESSION['user_id']."'";
+		if ($result = mysqli_query($connect,$query)) {
+			while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+				echo "<tr>";
+				echo "<td>".date('m/d/y h:i:s a', $row['timeIn'])."</td>";
+				if ($row['timeOut'] < $row['timeIn']) {
+					echo "<td></td>";
+				} else {
+					echo "<td>".date('m/d/y h:i:s a', $row['timeOut'])."</td>";
+				}
+				
+				if ($row['timeOut'] < $row['timeIn']) {
+					echo "<td></td>";
+				} else {
+					echo "<td>".round((($row['timeOut'] - $row['timeIn'])/3600),2)."</td>";
+				}
+				echo "</tr>";
+			}
+		} else {
+			echo "Error retrieving information from database.";
+		}
+		?> 
 				</table>
+				<p class="largeText">Total hours worked this pay period: <span><strong><?php totalHoursWorked($_SESSION['user_id']) ?></strong></span></p>
 		</div>
 		<div class="notification">
 			<h2>Messages</h2>

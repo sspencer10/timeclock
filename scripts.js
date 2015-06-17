@@ -13,6 +13,20 @@ $('#cssmenu').prepend('<div id="menu-button">Menu</div>');
 });
 } )( jQuery );
 
+$('.clockIn').click(function(){
+    $.ajax
+    ({ 
+        url: 'clockIn.php',
+        type: 'post',
+        success: function() {
+        	alert("Success!");
+        } else {
+        	alert("You cannot clock in, because you are already clocked in.");
+        }
+    });
+});
+
+//table filtering
 $(function(){
   $('#searchf').keyup(function(){
     var val = $(this).val().toLowerCase();
@@ -26,34 +40,6 @@ $(function(){
       }
     });
   });
-});
-
-
-//adding hour totals
-var totalsByRow = [0, 0, 0, 0, 0, 0, 0, 0];
-var totalsByCol = [0, 0, 0, 0, 0, 0, 0, 0];
-$(document).ready(function() {
-
-    var $dataRows = $("#hoursTable tr:not('.totalColumn, .titlerow')");
-
-    $dataRows.each(function(i) {
-        $(this).find('td:not(.totalRow)').each(function(j) {
-            totalsByCol[j] += parseInt($(this).html());
-            totalsByRow[i] += parseInt($(this).html());
-        });
-    });
-    
-    for (var i = 0; i < totalsByCol.length - 1; i++) {
-        totalsByCol[totalsByCol.length - 1] += totalsByCol[i];       
-    }    
-
-    $("#hoursTable td.totalCol").each(function(i) {
-        $(this).html("" + totalsByCol[i]);
-    });
-
-    $("#hoursTable td.totalRow").each(function(i) {
-        $(this).html("" + totalsByRow[i]);
-    });
 });
 
 (function($) {

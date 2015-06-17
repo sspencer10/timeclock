@@ -38,7 +38,12 @@ include 'header.php';
 			<label>E-mail:</label>
 			<input name="email"  maxlength="64" value="<?php echo $row['email'] ?>" />
 		</p>
-		<p><small><?php echo getFullNameFromID($id); ?> last logged in on <strong><?php echo getLastLoginById($id); ?></strong></small>
+		<p>
+			<strong>Address: </strong><br>
+
+			<?php echo $row['address']; ?><br>
+			<?php echo $row['city']; ?>, <?php echo $row['state']; ?> <?php echo $row['zip']; ?><br>
+		</p>
 	</fieldset>
 	<br>
 	<fieldset>
@@ -89,6 +94,7 @@ include 'header.php';
 			<input type="radio" id="isAdminTrue" name="isadmin" <?php if ($row['isAdmin'] == 1) echo 'checked'; ?> value="1"><label for="isAdminTrue">Administrator</label>
 			<input type="radio" id="isAdminFalse" name="isadmin" <?php if ($row['isAdmin'] == 0) echo 'checked'; ?> value="0"><label for="isAdminFalse">Standard</label>
 		</p>
+		<p><small><?php echo getFullNameFromID($id); ?> last logged in on <strong><?php echo getLastLoginById($id); ?></strong></small></p>
 		<input type="hidden" name="user_id" value="<?php echo $id ?>" />
 	</fieldset>
 	<br>

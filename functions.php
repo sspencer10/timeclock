@@ -153,4 +153,14 @@ function sanitize($input) {
     return $output;
 }
 
+function totalHoursWorked($id) {
+	global $connect;
+	$query = "SELECT timeIn,timeOut FROM time_entries WHERE user_id='".$id."'";
+	if ($result = mysqli_query($connect, $query)) {
+		echo "12";
+	} else {
+		echo "Problem retrieving time from database.";
+	}
+}
+
 ?>
