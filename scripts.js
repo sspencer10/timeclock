@@ -13,19 +13,6 @@ $('#cssmenu').prepend('<div id="menu-button">Menu</div>');
 });
 } )( jQuery );
 
-// $('.clockIn').click(function(){
-//     $.ajax
-//     ({ 
-//         url: 'clockIn.php',
-//         type: 'post',
-//         success: function() {
-//         	alert("Success!");
-//         } else {
-//         	alert("You cannot clock in, because you are already clocked in.");
-//         }
-//     });
-// });
-
 //table filtering
 $(function(){
   $('#searchf').keyup(function(){
