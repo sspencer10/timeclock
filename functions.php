@@ -155,12 +155,32 @@ function sanitize($input) {
 
 function totalHoursWorked($id) {
 	global $connect;
+
+	// get next auto increment id of time_entries table
+	$result3 = mysqli_query($connect, "SHOW TABLE STATUS LIKE 'time_entries'");
+	$data = mysqli_fetch_array($result3,MYSQLI_ASSOC);
+	$next_increment = $data['Auto_increment'];
+
+	$totalHours = 0;
 	$query = "SELECT timeIn,timeOut FROM time_entries WHERE user_id='".$id."'";
 	if ($result = mysqli_query($connect, $query)) {
-		echo "12";
-	} else {
-		echo "Problem retrieving time from database.";
+		$query2 = "SELECT timeIn,timeOut FROM time_entries WHERE user_id='".$id."' AND id=".($next_increment - 1)."";
+		if ($result2 = mysqli_query($connect,$query2)) {
+			$row2 = mysqli_fetch_array($result2,MYSQLI_ASSOC);
+			if (empty($row2['timeIn']) || empty($row2['timeOut'])) {
+				echo "Time cannot be calculated until you clock out.";
+			} else {
+				while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+					$time = (($row['timeOut'] - $row['timeIn']));
+					$totalHours += $time;
+				}
+				echo round(($totalHours/3600),2);
+			} 
+		} else {
+			echo "Problem retrieving time from database.";
+		}
 	}
 }
 
 ?>
+

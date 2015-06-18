@@ -16,22 +16,35 @@ include 'header.php';
 		<form action='clockIn.php' method='POST'><input type='hidden' class='clockIn' name='clockIn' /><input type='submit' value='Clock In' /></form>
 		<form action='clockOut.php' method='POST'><input type='hidden' class='clockOut' name='clockOut' /><input type='submit' value='Clock Out' /></form><br>
  		<div class="clear"></div>
+ 		<div class="message">
+		<?php if(isset($_GET['msg'])) {
+			$msg = $_GET['msg'];
+			if ($msg == 1) {
+				echo "<div class='message error'><span>Error: </span>You cannot clock out until you have first clocked in.</div>";
+			}
+			else if ($msg == 2) {
+				echo "<div class='message error'><span>Error: </span>You cannot clock in again until you have first clocked out.</div>";
+			}
+		}
+		?>
+	</div>
  		<table>
  			    <tr>
  			    	<th>In Time</th>
  			    	<th>Out Time</th>
  			    	<th>Total Hours</th>
+ 			    	<th>Edit</th>
  			    </tr>	    
  			    <?php
-		$query = "SELECT timeIn,timeOut FROM time_entries WHERE user_id = '".$_SESSION['user_id']."'";
+		$query = "SELECT id,timeIn,timeOut FROM time_entries WHERE user_id = '".$_SESSION['user_id']."'";
 		if ($result = mysqli_query($connect,$query)) {
 			while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 				echo "<tr>";
-				echo "<td>".date('m/d/y h:i:s a', $row['timeIn'])."</td>";
+				echo "<td>".date('D, M j, Y, g:i a', $row['timeIn'])."</td>";
 				if ($row['timeOut'] < $row['timeIn']) {
 					echo "<td></td>";
 				} else {
-					echo "<td>".date('m/d/y h:i:s a', $row['timeOut'])."</td>";
+					echo "<td>".date('D, M j, Y, g:i a', $row['timeOut'])."</td>";
 				}
 				
 				if ($row['timeOut'] < $row['timeIn']) {
@@ -39,6 +52,7 @@ include 'header.php';
 				} else {
 					echo "<td>".round((($row['timeOut'] - $row['timeIn'])/3600),2)."</td>";
 				}
+				echo "<td><form action='editTime.php' method='POST'><input type='hidden' name='timeID' value='".$row['id']."' /><input type='submit' value='Edit' /></form></td>";
 				echo "</tr>";
 			}
 		} else {

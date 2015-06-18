@@ -301,7 +301,8 @@ table tr th {
 }
 
 
-/* Navbar Styles */
+
+/*/* Navbar Styles */
 #cssmenu,
 #cssmenu ul,
 #cssmenu ul li,
@@ -629,4 +630,4 @@ only screen and (min-resolution: 2dppx) and (max-width: 1024px) {
     #cssmenu ul ul li.has-sub > a::after {
         display: none;
     }
-}
+}*/

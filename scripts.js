@@ -13,18 +13,18 @@ $('#cssmenu').prepend('<div id="menu-button">Menu</div>');
 });
 } )( jQuery );
 
-$('.clockIn').click(function(){
-    $.ajax
-    ({ 
-        url: 'clockIn.php',
-        type: 'post',
-        success: function() {
-        	alert("Success!");
-        } else {
-        	alert("You cannot clock in, because you are already clocked in.");
-        }
-    });
-});
+// $('.clockIn').click(function(){
+//     $.ajax
+//     ({ 
+//         url: 'clockIn.php',
+//         type: 'post',
+//         success: function() {
+//         	alert("Success!");
+//         } else {
+//         	alert("You cannot clock in, because you are already clocked in.");
+//         }
+//     });
+// });
 
 //table filtering
 $(function(){
@@ -75,15 +75,8 @@ $(function(){
 					cache: false,
 					timeout: 10000,
 					success: function(data) {
-						// Alert if update failed
-						if (data) {
-							alert(data);
-						}
-						// Load output into a P
-						else {
 							$('#notice').text('User Info Updated').css({'color':'green','font-weight':'900'});
 							$('#notice').fadeOut().fadeIn();
-						}
 					}
 				});
 				// Prevent normal submission of form
