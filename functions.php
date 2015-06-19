@@ -103,7 +103,7 @@ function getLastLoginById($id) {
 		if ($row['lastLogin'] != 0) {
 			return date('m/d/y h:i:s a', $row['lastLogin']);
 		} else {
-			return "User account not activated";
+			return "User has never logged in.";
 		}
 	} else {
 		return "Error retrieving last login";
@@ -168,7 +168,7 @@ function totalHoursWorked($id) {
 		if ($result2 = mysqli_query($connect,$query2)) {
 			$row2 = mysqli_fetch_array($result2,MYSQLI_ASSOC);
 			if (empty($row2['timeIn']) || empty($row2['timeOut'])) {
-				echo "Time cannot be calculated until you clock out.";
+				echo "Clocked in.";
 			} else {
 				while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 					$time = (($row['timeOut'] - $row['timeIn']));

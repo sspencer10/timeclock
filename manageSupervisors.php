@@ -34,6 +34,7 @@ if (($handle = fopen($file, "r")) !== FALSE) {
 ?>
 
 	<h2>Supervisor Manager</h2>
+	<hr>
 	<div class="time">
 	<?php if(isset($_GET['msg'])) {
 			$msg = $_GET['msg'];
@@ -71,6 +72,7 @@ if (($handle = fopen($file, "r")) !== FALSE) {
 			echo "</tr>";
 		}
 		echo "</table></div>";
+		echo "<br><form action='deleteAllSupervisors.php'><input type='submit' value='Delete All Supervisors' onclick=\"return confirm('Are you sure you want to delete all supervisors? This will delete all supervisors from the database. This action cannot be undone.');\" /></form>";
 	} else {
 		echo "Error retrieving information from database.</div>";
 	}

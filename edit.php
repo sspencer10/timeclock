@@ -41,8 +41,13 @@ include 'header.php';
 		<p>
 			<strong>Address: </strong><br>
 
-			<?php echo $row['address']; ?><br>
-			<?php echo $row['city']; ?>, <?php echo $row['state']; ?> <?php echo $row['zip']; ?><br>
+			<?php
+				if (!empty($row['address'])) {
+					echo $row['address']."<br>".$row['city'].", ".$row['state']." ".$row['zip']."<br>";
+				} else {
+					echo "No address entered.";
+				}
+			?>
 		</p>
 	</fieldset>
 	<br>
@@ -72,6 +77,10 @@ include 'header.php';
 		<p>
 			<label>Phone:</label>
 			<input name="phone"  maxlength="14" value="<?php echo $row['phone'] ?>" />
+		</p>
+		<p>
+			<label>Current Pay Rate:</label>
+			$<input type="text" name="payRate" size="4" maxlength="6" value="<?php echo $row['payRate'] ?>" />/hr
 		</p>
 	</fieldset>
 	<br>

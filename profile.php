@@ -61,9 +61,7 @@ $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 	<fieldset>
 		<legend>Company Info</legend>
 		<p>
-			<strong>Supervisor: </strong>
-			<?php
-			if (!empty($row['currentSupervisor'])) { echo $row['currentSupervisor']; } else { echo "None provided."; } ?>
+			<strong>Supervisor: </strong><?php if (!empty($row['currentSupervisor'])) { echo $row['currentSupervisor']; } else { echo "None provided."; } ?>
 		</p>
 		<p>
 			<strong>Company:</strong>
@@ -76,6 +74,11 @@ $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 		<p>
 			<label>Phone:</label>
 			<input name="phone" maxlength="14" value="<?php echo $row['phone'] ?>" />
+		</p>
+		<hr>
+		<p>
+			<strong>Current Pay Rate: </strong><?php if (!empty($row['payRate'])) { echo "$".$row['payRate']."/hr"; } else { echo "None provided."; } ?>
+			<br><small>If you believe an error has been made as to your pay rate, please speak with your supervisor.</small>
 		</p>
 		<input id="where" type="hidden" name="id" value="<?php echo $row['id'] ?>" />
 	</fieldset>

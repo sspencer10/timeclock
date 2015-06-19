@@ -1,7 +1,7 @@
 <?php
 require_once 'connect.php';
 require_once 'functions.php';
-$pageTitle = "Administrator Panel";
+$pageTitle = "User Administrator Panel";
 include 'header.php';
 
 
@@ -12,7 +12,8 @@ if (isLoggedIn() && isAdministrator()) {
 	header('refresh:5,url=index.php');
 	die();
 }?>
-<h2>User Administration</h2><br>
+<h2>User Administration</h2>
+<hr><br>
 <label>Filter Results: </label><input type="search" id="searchf" placeholder="Search"/><br><br>
 <hr />
 <?php

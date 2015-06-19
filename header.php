@@ -6,10 +6,11 @@ require_once 'functions.php';
 <html>
 <head>
 	<title><?php echo $pageTitle; ?></title>
-	<link href="styles.css" rel="stylesheet" type="text/css" />
+	<link href="styles/styles.css" rel="stylesheet" type="text/css" />
 	<meta name="viewport" content="initial-scale=1">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="scripts.js"></script>
+	<script src="scripts/jquery.datetimepicker.js"></script>
+	<script src="scripts/scripts.js"></script>
 </head>
 <body>
 	<div id='cssmenu'>
@@ -23,7 +24,7 @@ require_once 'functions.php';
 									<li><a href='adminUsers.php'>User Admin</a></li>
 									<li><a href='manageSupervisors.php'>Supervisor Manager</a></li>
 									<li><a href='siteMessage.php'>Site-wide Message</a></li>
-									<li><a href='companyInfo.php'>Company Information</a></li>
+									<li><a href='siteConfiguration.php'>Site Configuration</a></li>
 								</ul>
 							</li>";
 						}

@@ -16,6 +16,12 @@ include 'header.php';
 		<form action='clockIn.php' method='POST'><input type='hidden' class='clockIn' name='clockIn' /><input type='submit' value='Clock In' /></form>
 		<form action='clockOut.php' method='POST'><input type='hidden' class='clockOut' name='clockOut' /><input type='submit' value='Clock Out' /></form><br>
  		<div class="clear"></div>
+ 		<br>
+ 		<label>Select Pay Period: </label><select>
+	 		<option value="1">Jan</option>
+	 		<option value="1">Feb</option>
+	 		<option value="1">Mar</option>
+ 		</select>
  		<div class="message">
 		<?php if(isset($_GET['msg'])) {
 			$msg = $_GET['msg'];
@@ -24,6 +30,12 @@ include 'header.php';
 			}
 			else if ($msg == 2) {
 				echo "<div class='message error'><span>Error: </span>You cannot clock in again until you have first clocked out.</div>";
+			}
+			else if ($msg == 3) {
+				echo "<div class='message success'><span>Success: </span>Time entry successfully modified.</div>";
+			}
+			else if ($msg == 4) {
+				echo "<div class='message error'><span>Error: </span>There was an error modifying your time entry.</div>";
 			}
 		}
 		?>
@@ -52,7 +64,11 @@ include 'header.php';
 				} else {
 					echo "<td>".round((($row['timeOut'] - $row['timeIn'])/3600),2)."</td>";
 				}
-				echo "<td><form action='editTime.php' method='POST'><input type='hidden' name='timeID' value='".$row['id']."' /><input type='submit' value='Edit' /></form></td>";
+				if (!empty($row['timeOut']) && !empty($row['timeIn'])) {
+					echo "<td><form action='editTime.php' method='POST'><input type='hidden' name='timeID' value='".$row['id']."' /><input type='submit' value='Edit' /></form></td>";
+				} else {
+					echo "<td></td>";
+				}
 				echo "</tr>";
 			}
 		} else {

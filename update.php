@@ -9,13 +9,14 @@ print_r($_POST);
 	$email = ($_POST['email']);
 	$activated = $_POST['activated'];
 	$isAdmin = $_POST['isadmin'];
+	$payRate = $_POST['payRate'];
 	$department = $_POST['department'];
 	$supervisor = $_POST['supervisor'];
 	$phone = $_POST['phone'];
 	$canreactivate = $_POST['canreactivate'];
 	$id = $_POST['user_id'];
 	// if (!empty($id) && (!empty($firstname)) && (!empty($lastname)) && (!empty($email))) {
-		$query = "UPDATE users SET firstname='".$firstname."',lastname='".$lastname."',email='".$email."',activated='".$activated."',canReactivate='".$canreactivate."',isAdmin='".$isAdmin."',department='".$department."',currentSupervisor='".$supervisor."',phone='".$phone."' WHERE id='".$id."'";
+		$query = "UPDATE users SET firstname='".$firstname."',lastname='".$lastname."',email='".$email."',activated='".$activated."',canReactivate='".$canreactivate."',isAdmin='".$isAdmin."',department='".$department."',payRate='".$payRate."',currentSupervisor='".$supervisor."',phone='".$phone."' WHERE id='".$id."'";
 		if ($result = mysqli_query($connect,$query)) {
 			header('Location:adminUsers.php');
 		} else {

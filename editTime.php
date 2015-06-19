@@ -13,17 +13,47 @@ if (isLoggedIn()) {
 if(isset($_POST['timeID']) && !empty($_POST['timeID'])) {
   	$id = mysql_real_escape_string($_POST['timeID']);
   	$query = "SELECT * FROM time_entries WHERE id=".$id;
-  	mysqli_query($connect, $query);
+  	//mysqli_query($connect, $query);
   	if ($result = mysqli_query($connect, $query)) {
 		$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+	}
+}
+
+if(isset($_POST['timeIn']) && isset($_POST['timeOut'])) {
+	// echo "Modified TimeIn: ".strtotime($_POST['timeIn'])."<br>";
+	// echo "Modified TimeOut: ".strtotime($_POST['timeOut'])."<br>";
+	// echo "ID: ".$_POST['id'];
+	if (!empty($_POST['timeIn']) && !empty($_POST['timeOut'])) {
+  			$query2 = "UPDATE time_entries SET timeIn = '".strtotime($_POST['timeIn'])."', timeOut = '".strtotime($_POST['timeOut'])."' WHERE id=".$_POST['id'];
+  			if ($result2 = mysqli_query($connect, $query2)) {
+			header('Location:index.php?msg=3');
+		}
+		else {
+			header('Location:index.php?msg=4');
+		}
 	}
 }
 
 include 'header.php';
 ?>
 <h2>Edit Time Entry</h2>
+<hr>
+<strong>Current Values:</strong><br>
+
 <?php
 echo "Time in: ".date('D, M j, Y, g:i a', $row['timeIn'])."<br>";
 echo "Time out: ".date('D, M j, Y, g:i a', $row['timeOut']);
+?>
+<br><br>
+<form action="editTime.php" method="POST">
+<strong>Modify Values:</strong><br>
+<label>Time in: </label><input type="datetime-local" name="timeIn" value="<?php echo date('Y-m-d\TH:i', $row['timeIn']); ?>"/><br><br>
+<label>Time out: </label><input type="datetime-local" name="timeOut" value="<?php echo date('Y-m-d\TH:i', $row['timeOut']); ?>"/><br>
+<input type="hidden" name="id" value="<?php echo $id; ?>"/>
+<p>
+	<input type="submit" value="Update" />
+</p>
+</form>
+<?php
 include 'footer.php';
 ?>

@@ -19,9 +19,9 @@ if (isset($_POST['siteMessage']) && (!empty($_POST['siteMessage']))) {
 ?>
 
 	<h2>Site-wide Message</h2>
+	<hr>
 	<form action="siteMessage.php" method="POST" enctype="multipart/form-data"> 
 		<p>Enter a message below, and it will be updated for all users in the "Messages" section of their homepage. On the right will show you how your message will be displayed.</p>
-		<hr>
 		<div class="time">
 		<textarea name="siteMessage"><?php $p = json_decode(file_get_contents('siteMessage.json')); echo $p; ?></textarea><br>
 		<small><strong>HTML tags <u>are</u> allowed.</strong></small><br>

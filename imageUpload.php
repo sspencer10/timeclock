@@ -12,10 +12,10 @@ if (isset($_POST['submit'])) {
             $temp = explode(".",$_FILES["file"]["name"]);
             $newfilename = "companyLogo" . '.' .end($temp);
             move_uploaded_file($_FILES["file"]["tmp_name"], "uploads/" . $newfilename);
-            header('Location: companyInfo.php?msg=3');
+            header('Location: siteConfiguration.php?msg=3');
             }
         } else {
-            header('Location: companyInfo.php?msg=4');
+            header('Location: siteConfiguration.php?msg=4');
         }
     }
 ?>
