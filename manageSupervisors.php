@@ -39,10 +39,10 @@ if (($handle = fopen($file, "r")) !== FALSE) {
 	<?php if(isset($_GET['msg'])) {
 			$msg = $_GET['msg'];
 			if ($msg == 1) {
-				echo "<div class='message success'><span>Success: </span>Your file was successfully uploaded.</div>";
+				echo "<div class='message success'><span>Success: </span>Your file was successfully uploaded.<span class='closeAlert'>X</span></div>";
 			}
 			else if ($msg == 2) {
-				echo "<div class='message error'><span>Error: </span>There was a problem with the file upload.</div>";
+				echo "<div class='message error'><span>Error: </span>There was a problem with the file upload.<span class='closeAlert'>X</span></div>";
 			}
 		}
 	?>

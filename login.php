@@ -49,22 +49,22 @@ if (isLoggedIn()) {
 			<?php if(isset($_GET['msg'])) {
 			$msg = $_GET['msg'];
 			if ($msg == 7) {
-				echo "<div class='message notice'><span>Notice: </span>Your account has not yet been activated. <a href='resendActivation.php'>Resend activation email</a>?</div>";
+				echo "<div class='message notice'><span>Notice: </span>Your account has not yet been activated. <a href='resendActivation.php'>Resend activation email</a>?<span class='closeAlert'>X</span></div>";
 			}
 			else if ($msg == 8) {
-				echo "<div class='message error'><span>Error: </span>Invalid username or password. Please try again.</div>";
+				echo "<div class='message error'><span>Error: </span>Invalid username or password. Please try again.<span class='closeAlert'>X</span></div>";
 			}
 			else if ($msg == 9) {
-				echo "<div class='message error'><span>Error: </span>There was a problem with the database query.</div>";
+				echo "<div class='message error'><span>Error: </span>There was a problem with the database query.<span class='closeAlert'>X</span></div>";
 			}
 			else if ($msg == 10) {
-				echo "<div class='message warning'><span>Warning: </span>One or more required fields were left blank.</div>";
+				echo "<div class='message warning'><span>Warning: </span>One or more required fields were left blank.<span class='closeAlert'>X</span></div>";
 			}
 			else if ($msg == 11) {
-				echo "<div class='message notice'><span>Notice: </span>Activation e-mail sent. Please check your email.</div>";
+				echo "<div class='message notice'><span>Notice: </span>Activation e-mail sent. Please check your email.<span class='closeAlert'>X</span></div>";
 			}
 			else if ($msg == 12) {
-				echo "<div class='message error'><span>Error: </span>Your account has been disabled, and an administrator has not authorized you for reactivation.</div>";
+				echo "<div class='message error'><span>Error: </span>Your account has been disabled, and an administrator has not authorized you for reactivation.<span class='closeAlert'>X</span></div>";
 			}
 		}
 		?>

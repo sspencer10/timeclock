@@ -77,6 +77,21 @@ $(function(){
 	$('#ajax-form INPUT').autoSubmit();
 });
 
+//close the alert when clicking the "X"
+$(document).on('click', '.closeAlert', function() {
+	this.parentNode.remove();
+});
+
+function getPayPeriodEntries(value) {
+	$.ajax({//Make the Ajax Request
+        type: "POST",
+        url: "getPayPeriods.php",
+        data: { firstDate: value },
+        success: function(data) {
+        	$('#timeEntries').html(data);
+        }
+    });
+}
 
 
 //responsive nav scripts

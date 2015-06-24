@@ -17,7 +17,7 @@ if(isset($_POST['clockIn'])) {
 	$id = mysql_real_escape_string($_POST['clockIn']);
 	$time = getdate();
 
-	$result2 = mysqli_query($connect,"SELECT timeOut FROM time_entries WHERE id = '".($next_increment - 1)."'");
+	$result2 = mysqli_query($connect,"SELECT timeOut FROM time_entries WHERE id = '".($next_increment - 1)."' AND user_id =".$_SESSION['user_id']."");
   	$row = mysqli_fetch_array($result2,MYSQLI_ASSOC);
 
   	if (!empty($row['timeOut'])) {

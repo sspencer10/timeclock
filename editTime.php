@@ -13,19 +13,19 @@ if (isLoggedIn()) {
 if(isset($_POST['timeID']) && !empty($_POST['timeID'])) {
   	$id = mysql_real_escape_string($_POST['timeID']);
   	$query = "SELECT * FROM time_entries WHERE id=".$id;
-  	//mysqli_query($connect, $query);
   	if ($result = mysqli_query($connect, $query)) {
 		$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 	}
 }
 
 if(isset($_POST['timeIn']) && isset($_POST['timeOut'])) {
-	// echo "Modified TimeIn: ".strtotime($_POST['timeIn'])."<br>";
-	// echo "Modified TimeOut: ".strtotime($_POST['timeOut'])."<br>";
-	// echo "ID: ".$_POST['id'];
 	if (!empty($_POST['timeIn']) && !empty($_POST['timeOut'])) {
-  			$query2 = "UPDATE time_entries SET timeIn = '".strtotime($_POST['timeIn'])."', timeOut = '".strtotime($_POST['timeOut'])."' WHERE id=".$_POST['id'];
-  			if ($result2 = mysqli_query($connect, $query2)) {
+		if ($_POST['timeOut'] < $_POST['timeIn']) {
+			header('Location:index.php?msg=5');
+			die();
+		}
+  		$query2 = "UPDATE time_entries SET timeIn = '".strtotime($_POST['timeIn'])."', timeOut = '".strtotime($_POST['timeOut'])."' WHERE id=".$_POST['id'];
+  		if ($result2 = mysqli_query($connect, $query2)) {
 			header('Location:index.php?msg=3');
 		}
 		else {

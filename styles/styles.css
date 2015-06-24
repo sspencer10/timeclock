@@ -225,6 +225,28 @@ table tr th {
     margin: 0;
 }
 
+.float-right {
+    float: right;
+}
+
+.float-left {
+    float: left;
+}
+
+.clockButtons {
+    float: left;
+    margin-top: 20px;
+}
+
+.closeAlert {
+    float: right;
+    cursor: pointer;
+}
+
+.hideAlert {
+    display: none;
+}
+
 @media (max-width: 960px) {
     .container {
         width: 98%;
@@ -305,6 +327,11 @@ table tr th {
     .login {
         width: 100%;
         border: none;
+    }
+
+    .clockButtons {
+    margin-top: 0px;
+    margin-bottom: 15px;
     }
 }
 

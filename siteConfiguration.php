@@ -20,22 +20,37 @@ if (isset($_POST['companyName']) && (!empty($_POST['companyName']))) {
 	}
 }
 
+if (isset($_POST['payPeriodStart']) && isset($_POST['payPeriodLength']) && !empty($_POST['payPeriodStart']) && !empty($_POST['payPeriodLength'])) {
+	$dateTime = strtotime($_POST['payPeriodStart']);
+	if (sanitize(file_put_contents('payPeriodConfig.json', json_encode(array('startDate' => $dateTime, 'length' => $_POST['payPeriodLength']))))) {
+			header('Location:siteConfiguration.php?msg=5');
+	} else {
+		header('Location:siteConfiguration.php?msg=6');
+	}
+}
+
 ?>
 	<h2>Site Configuration</h2>
 	
 	<?php if(isset($_GET['msg'])) {
 			$msg = $_GET['msg'];
 			if ($msg == 1) {
-				echo "<div class='message success'><span>Success: </span>Your company name has been updated.</div>";
+				echo "<div class='message success'><span>Success: </span>Your company name has been updated.<span class='closeAlert'>X</span></div>";
 			}
 			else if ($msg == 2) {
-				echo "<div class='message error'><span>Error: </span>An error occurred while updating your company information.</div>";
+				echo "<div class='message error'><span>Error: </span>An error occurred while updating your company information.<span class='closeAlert'>X</span></div>";
 			}
 			else if ($msg == 3) {
-				echo "<div class='message success'><span>Success: </span>Your image was successfully uploaded.</div>";
+				echo "<div class='message success'><span>Success: </span>Your image was successfully uploaded.<span class='closeAlert'>X</span></div>";
 			}
 			else if ($msg == 4) {
-				echo "<div class='message error'><span>Error: </span>Your image was not uploaded. Check the file size and image type, and try again.</div>";
+				echo "<div class='message error'><span>Error: </span>Your image was not uploaded. Check the file size and image type, and try again.<span class='closeAlert'>X</span></div>";
+			}
+			else if ($msg == 5) {
+				echo "<div class='message success'><span>Success: </span>Your pay period configuration information was successfully updated.<span class='closeAlert'>X</span></div>";
+			}
+			else if ($msg == 6) {
+				echo "<div class='message error'><span>Error: </span>An error occurred while trying to update your pay period configuration information. Please try again.<span class='closeAlert'>X</span></div>";
 			}
 		}
 		?>
@@ -72,13 +87,18 @@ if (isset($_POST['companyName']) && (!empty($_POST['companyName']))) {
 		</div>	
 		<div class="clear"></div><hr>
 		<div>
+		<form action="siteConfiguration.php" method="POST">
 			<h3>Pay Period Configuration</h3>
 			<p>
-				<label>Begin first pay period on: </label><input type="date" />
+				<label>Begin first pay period on: </label><input name="payPeriodStart" type="date" value="<?php $date = json_decode(file_get_contents('payPeriodConfig.json'), true); echo date('o-m-d', $date['startDate']); ?>" />
 			</p>
 			<p>
-				<label>Begin new pay period every: </label><input type="number" min="1" max="31" step="1" size="3" /> days.
+				<label>Begin new pay period every: </label><input name="payPeriodLength" type="number" min="1" max="31" step="1" size="3" value="<?php echo $date['length']; ?>"/> days.
 			</p>
+			<p>
+				<input type="submit" value="Update" />
+			</p>
+		</form>
 		</div>
 	<?php
 	include 'footer.php';

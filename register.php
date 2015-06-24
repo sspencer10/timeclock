@@ -47,22 +47,22 @@ include 'header.php';
 		<?php if(isset($_GET['msg'])) {
 			$msg = $_GET['msg'];
 			if ($msg == 1) {
-				echo "<div class='message success'><span>Success: </span>Registration successful. Please check your email to activate your account. You may then <a href='login.php'>login</a>.</div>";
+				echo "<div class='message success'><span>Success: </span>Registration successful. Please check your email to activate your account. You may then <a href='login.php'>login</a>.<span class='closeAlert'>X</span></div>";
 			}
 			else if ($msg == 2) {
-				echo "<div class='message error'><span>Error: </span>Error submitting registration info.</div>";
+				echo "<div class='message error'><span>Error: </span>Error submitting registration info.<span class='closeAlert'>X</span></div>";
 			}
 			else if ($msg == 3) {
-				echo "<div class='message warning'><span>Warning: </span>That email is already in use. Please select another.</div>";
+				echo "<div class='message warning'><span>Warning: </span>That email is already in use. Please select another.<span class='closeAlert'>X</span></div>";
 			}
 			else if ($msg == 4) {
-				echo "<div class='message warning'><span>Warning: </span>That username is already in use. Please try again.</div>";
+				echo "<div class='message warning'><span>Warning: </span>That username is already in use. Please try again.<span class='closeAlert'>X</span></div>";
 			}
 			else if ($msg == 5) {
-				echo "<div class='message warning'><span>Warning: </span>Your two passwords do not match. Please try again.</div>";
+				echo "<div class='message warning'><span>Warning: </span>Your two passwords do not match. Please try again.<span class='closeAlert'>X</span></div>";
 			}
 			else if ($msg == 6) {
-				echo "<div class='message warning'><span>Warning: </span>One or more required fields are missing.</div>";
+				echo "<div class='message warning'><span>Warning: </span>One or more required fields are missing.<span class='closeAlert'>X</span></div>";
 			}
 		}
 		?>

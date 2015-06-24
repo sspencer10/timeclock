@@ -153,7 +153,7 @@ function sanitize($input) {
     return $output;
 }
 
-function totalHoursWorked($id) {
+function totalHoursWorked($id, $timeIn, $timeOut) {
 	global $connect;
 
 	// get next auto increment id of time_entries table
@@ -162,12 +162,16 @@ function totalHoursWorked($id) {
 	$next_increment = $data['Auto_increment'];
 
 	$totalHours = 0;
-	$query = "SELECT timeIn,timeOut FROM time_entries WHERE user_id='".$id."'";
+	$query = "SELECT timeIn,timeOut FROM time_entries WHERE user_id='".$id."' AND timeIn > ".$timeIn." AND timeOut < ".$timeOut." ";
 	if ($result = mysqli_query($connect, $query)) {
 		$query2 = "SELECT timeIn,timeOut FROM time_entries WHERE user_id='".$id."' AND id=".($next_increment - 1)."";
 		if ($result2 = mysqli_query($connect,$query2)) {
 			$row2 = mysqli_fetch_array($result2,MYSQLI_ASSOC);
-			if (empty($row2['timeIn']) || empty($row2['timeOut'])) {
+			$rowcount=mysqli_num_rows($result2);
+			if ($rowcount == 0) {
+				echo "0";
+			}
+			else if (empty($row2['timeIn']) || empty($row2['timeOut'])) {
 				echo "Clocked in.";
 			} else {
 				while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
@@ -182,5 +186,34 @@ function totalHoursWorked($id) {
 	}
 }
 
+function getCurrentPayPeriod() {
+	//gets the pay period pattern from JSON config file set by user
+	$date = json_decode(file_get_contents('payPeriodConfig.json'), true);
+
+	//gets pay period length from JSON config file set by user
+	$periodLength = $date['length'];
+	$now = new DateTime();
+
+	$begin = new DateTime( date('o-m-d', $date['startDate']) );
+	$end = new DateTime();
+
+	$interval = DateInterval::createFromDateString('every '.$periodLength.' days');
+	$period = new DatePeriod($begin, $interval, $end);
+
+	return $period;
+}
+
+function getCurrentPayPeriodStartDate() {
+	$periods = getCurrentPayPeriod();
+	$periodArray = iterator_to_array($periods);
+	$startDate = reset($periodArray);
+	$endDate = end($periodArray);
+	return $endDate->format("Y-m-d");
+}
+
+function getPayPeriodLength() {
+	$date = json_decode(file_get_contents('payPeriodConfig.json'), true);
+	return $date['length'];
+}
 ?>
 
