@@ -67,7 +67,6 @@ include 'header.php';
 			<?php $p = json_decode(file_get_contents('siteMessage.json')); echo "<p>".$p."</p>"; ?>
 		</div>
 		<div class="clear"></div>
-		<small><strong>Last login: </strong><?php echo getLastLogin(); ?>.</small>
 <?php
 include 'footer.php';
 ?>

@@ -10,17 +10,13 @@ if (isLoggedIn()) {
 }
 
 if(isset($_POST['clockIn'])) {
-	$result = mysqli_query($connect, "SHOW TABLE STATUS LIKE 'time_entries'");
-	$data = mysqli_fetch_array($result,MYSQLI_ASSOC);
-	$next_increment = $data['Auto_increment'];
-
 	$id = mysql_real_escape_string($_POST['clockIn']);
 	$time = getdate();
 
-	$result2 = mysqli_query($connect,"SELECT timeOut FROM time_entries WHERE id = '".($next_increment - 1)."' AND user_id =".$_SESSION['user_id']."");
-  	$row = mysqli_fetch_array($result2,MYSQLI_ASSOC);
+	$result2 = mysqli_query($connect,"SELECT * FROM time_entries WHERE timeOut = 0 AND user_id =".$_SESSION['user_id']."");
+  	$row = mysqli_num_rows($result2);
 
-  	if (!empty($row['timeOut'])) {
+  	if ($row == 0) {
 		$query = "INSERT INTO time_entries(user_id,timeIn) VALUES ('".$_SESSION['user_id']."','".$time['0']."')";
 		if (mysqli_query($connect, $query)) {
 	 		header('Location: index.php');

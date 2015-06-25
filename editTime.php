@@ -20,7 +20,7 @@ if(isset($_POST['timeID']) && !empty($_POST['timeID'])) {
 
 if(isset($_POST['timeIn']) && isset($_POST['timeOut'])) {
 	if (!empty($_POST['timeIn']) && !empty($_POST['timeOut'])) {
-		if ($_POST['timeOut'] < $_POST['timeIn']) {
+		if ($_POST['timeOut'] <= $_POST['timeIn']) {
 			header('Location:index.php?msg=5');
 			die();
 		}

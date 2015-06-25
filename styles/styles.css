@@ -40,7 +40,7 @@ img {
 .container {
     width: 960px;
     margin: 0 auto;
-    margin-bottom: 40px;
+    margin-bottom: 8px;
     padding: 20px;
     background-color: white;
     box-sizing: border-box;
@@ -247,6 +247,14 @@ table tr th {
     display: none;
 }
 
+footer {
+    text-align: center;
+    font-size: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 0 10px;
+}
+
 @media (max-width: 960px) {
     .container {
         width: 98%;
@@ -298,6 +306,11 @@ table tr th {
     td:nth-of-type(4):before { content: "Account Activated: ";  font-weight: 800;}
     td:nth-of-type(5):before { content: "Privileges: ";  font-weight: 800;}
     td:nth-of-type(6):before { content: "Actions: ";  font-weight: 800;}
+
+    #timeEntries td:nth-of-type(1):before { content: "In Time: "; font-weight: 800;}
+    td:nth-of-type(2):before { content: "Out Time: ";  font-weight: 800;}
+    td:nth-of-type(3):before { content: "Hours: ";  font-weight: 800;}
+    td:nth-of-type(4):before { content: "Edit: ";  font-weight: 800;}
 }
 
 @media (max-width: 650px) {
@@ -332,6 +345,10 @@ table tr th {
     .clockButtons {
     margin-top: 0px;
     margin-bottom: 15px;
+    }
+
+    .message {
+        margin: 10px 0;
     }
 }
 

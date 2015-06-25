@@ -155,34 +155,22 @@ function sanitize($input) {
 
 function totalHoursWorked($id, $timeIn, $timeOut) {
 	global $connect;
-
-	// get next auto increment id of time_entries table
-	$result3 = mysqli_query($connect, "SHOW TABLE STATUS LIKE 'time_entries'");
-	$data = mysqli_fetch_array($result3,MYSQLI_ASSOC);
-	$next_increment = $data['Auto_increment'];
-
-	$totalHours = 0;
-	$query = "SELECT timeIn,timeOut FROM time_entries WHERE user_id='".$id."' AND timeIn > ".$timeIn." AND timeOut < ".$timeOut." ";
-	if ($result = mysqli_query($connect, $query)) {
-		$query2 = "SELECT timeIn,timeOut FROM time_entries WHERE user_id='".$id."' AND id=".($next_increment - 1)."";
-		if ($result2 = mysqli_query($connect,$query2)) {
-			$row2 = mysqli_fetch_array($result2,MYSQLI_ASSOC);
-			$rowcount=mysqli_num_rows($result2);
-			if ($rowcount == 0) {
-				echo "0";
-			}
-			else if (empty($row2['timeIn']) || empty($row2['timeOut'])) {
-				echo "Clocked in.";
-			} else {
-				while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
-					$time = (($row['timeOut'] - $row['timeIn']));
-					$totalHours += $time;
-				}
-				echo round(($totalHours/3600),2);
-			} 
+	$totalTime = 0;
+	$query = "SELECT * from time_entries WHERE user_id=".$id." AND timeIn >= ".$timeIn." AND timeOut <= ".$timeOut." ";
+	if ($result = mysqli_query($connect,$query)) {
+		$query2 = "SELECT * from time_entries WHERE user_id=".$id." AND timeOut=0 ";
+		$result2 = mysqli_query($connect,$query2);
+		if (mysqli_num_rows($result2) == 1) {
+			echo "Clocked in";
 		} else {
-			echo "Problem retrieving time from database.";
+			while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+				$time = $row['timeOut'] - $row['timeIn'];
+				$totalTime += $time;
+			}
+		echo round(($totalTime/3600),2);
 		}
+	} else {
+		echo "Error retrieving results from database";
 	}
 }
 

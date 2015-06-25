@@ -16,7 +16,7 @@ if (isset($_POST['firstDate'])) {
 	$firstDate = getCurrentPayPeriodStartDate();
 }
 
-echo "<table>
+echo "<table id=\"timeEntries\">
 <tr>
     	<th>In Time</th>
     	<th>Out Time</th>
@@ -55,7 +55,8 @@ $query = "SELECT id,timeIn,timeOut FROM time_entries WHERE user_id = '".$_SESSIO
 			echo "Error retrieving information from database.";
 		}
 		echo "</table><p class='largeText'>Total hours worked this pay period: <span><strong>";
-		totalHoursWorked($_SESSION['user_id'],strtotime($firstDate),(strtotime($firstDate) + (getPayPeriodLength() * 86400)));
+		
+		totalHoursWorked($_SESSION['user_id'], strtotime($firstDate), (strtotime($firstDate) + (getPayPeriodLength() * 86400)));
 		echo "</strong></span></p>";
 		
 ?>
