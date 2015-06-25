@@ -83,7 +83,7 @@ $(document).on('click', '.closeAlert', function() {
 });
 
 function getPayPeriodEntries(value) {
-	$.ajax({//Make the Ajax Request
+	$.ajax({
         type: "POST",
         url: "getPayPeriods.php",
         data: { firstDate: value },
@@ -93,6 +93,30 @@ function getPayPeriodEntries(value) {
     });
 }
 
+$(document).on('submit', '#timeAdminEntries', function(e) {
+	e.preventDefault();
+	var dataString = $("#timeAdminEntries").serialize();
+		$.ajax({
+        type: "POST",
+        url: "getUserPaymentEntries.php",
+        data: dataString,
+        success: function(data) {
+        	$('#timeEntries').html(data);
+        }
+    });
+});
+
+function characterCount() {
+    // 140 is the max message length
+    var remaining = 150 - jQuery('#comments').val().length;
+    jQuery('.characterCountdown').text(remaining + ' characters remaining.');
+}
+
+jQuery(document).ready(function($) {
+    characterCount();
+    $('#comments').change(characterCount);
+    $('#comments').keyup(characterCount);
+});
 
 //responsive nav scripts
 $(function() {

@@ -14,7 +14,7 @@ $result = mysqli_query($connect, $query);
 $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
 ?>
-	<h2><?php echo getFirstName(); ?>'s Profile</h2>
+	<h2><?php echo getFirstName($_SESSION['user_id']); ?>'s Profile</h2>
 	<p>To change your personal information, click inside any of the fields. <u>Your information will be saved automatically.</u></p>	
 
 <form id="ajax-form" class="autosubmit" method="POST" action="updateProfile.php">
@@ -85,27 +85,6 @@ $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 </form>
 <p id="notice"></p>
 <small><strong>Last login: </strong><?php echo getLastLogin(); ?>.</small>
-
-<?php
-include 'footer.php';
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <?php
 include 'footer.php';

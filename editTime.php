@@ -24,7 +24,7 @@ if(isset($_POST['timeIn']) && isset($_POST['timeOut'])) {
 			header('Location:index.php?msg=5');
 			die();
 		}
-  		$query2 = "UPDATE time_entries SET timeIn = '".strtotime($_POST['timeIn'])."', timeOut = '".strtotime($_POST['timeOut'])."' WHERE id=".$_POST['id'];
+  		$query2 = "UPDATE time_entries SET timeIn = '".strtotime($_POST['timeIn'])."', timeOut = '".strtotime($_POST['timeOut'])."', comments='".sanitize($_POST['comments'])."' WHERE id=".$_POST['id'];
   		if ($result2 = mysqli_query($connect, $query2)) {
 			header('Location:index.php?msg=3');
 		}
@@ -49,7 +49,11 @@ echo "Time out: ".date('D, M j, Y, g:i a', $row['timeOut']);
 <strong>Modify Values:</strong><br>
 <label>Time in: </label><input type="datetime-local" name="timeIn" value="<?php echo date('Y-m-d\TH:i', $row['timeIn']); ?>"/><br><br>
 <label>Time out: </label><input type="datetime-local" name="timeOut" value="<?php echo date('Y-m-d\TH:i', $row['timeOut']); ?>"/><br>
-<input type="hidden" name="id" value="<?php echo $id; ?>"/>
+<input type="hidden" name="id" value="<?php echo $id; ?>"/><br>
+Comments:<br><textarea id="comments" name="comments" class="comments" maxlength="150" required>
+<?php if (isset($row['comments'])) { echo sanitize($row['comments']); }?>
+</textarea><br>
+<span class="characterCountdown"></span>
 <p>
 	<input type="submit" value="Update" />
 </p>

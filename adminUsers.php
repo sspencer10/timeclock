@@ -36,7 +36,7 @@ if ($result = mysqli_query($connect,$query)) {
 				echo "<td>Standard</td>";
 			}
 		}
-			echo "<td><form action='edit.php' method='POST'><input type='hidden' name='edit_id' value='".$row['id']."' /><input type='submit' value='View/Edit' /></form><form action='delete.php' method='POST'><input type='hidden' name='delete_id' value='".$row['id']."' /><input type='submit' value='Delete' onclick=\"return confirm('Are you sure you want to delete this user? This action cannot be undone.');\" ></form></td>";
+			echo "<td><form action='editUser.php' method='POST'><input type='hidden' name='edit_id' value='".$row['id']."' /><input type='submit' value='View/Edit' /></form><form action='delete.php' method='POST'><input type='hidden' name='delete_id' value='".$row['id']."' /><input type='submit' value='Delete' onclick=\"return confirm('Are you sure you want to delete this user? This action cannot be undone.');\" ></form></td>";
 		echo "</tr>";
 	}
 	echo "</table>";

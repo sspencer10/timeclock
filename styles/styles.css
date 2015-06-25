@@ -247,6 +247,68 @@ table tr th {
     display: none;
 }
 
+.comments {
+    width: 300px;
+    height: 100px;
+}
+
+.characterCountdown {
+    font-size: 12px;
+    font-weight: 700;
+    color: crimson;
+}
+
+/* Tooltip Styles */
+a.tooltip {
+    outline:none;
+}
+
+a.tooltip strong {
+    line-height:30px;
+}
+
+a.tooltip:hover {
+    text-decoration:none;
+}
+
+a.tooltip img {
+    width: 15px;
+    height: 15px;
+}
+
+a.tooltip span {
+    z-index:10;
+    display:none;
+    padding:14px 20px;
+    margin-top:-30px;
+    margin-left:28px;
+    width:300px;
+    line-height:16px;
+}
+
+a.tooltip:hover span{
+    display:inline;
+    position:absolute;
+    color:#111;
+    border:1px solid #DCA;
+    background:#fffAF0;
+}
+
+.callout {
+    z-index:20;
+    position:absolute;
+    top:30px;
+    border:0;
+    left:-12px;
+}
+
+a.tooltip span {
+    border-radius:4px;
+    box-shadow: 5px 5px 8px #CCC;
+}
+
+/* End Tooltip Styles */
+
 footer {
     text-align: center;
     font-size: 10px;
@@ -310,7 +372,7 @@ footer {
     #timeEntries td:nth-of-type(1):before { content: "In Time: "; font-weight: 800;}
     td:nth-of-type(2):before { content: "Out Time: ";  font-weight: 800;}
     td:nth-of-type(3):before { content: "Hours: ";  font-weight: 800;}
-    td:nth-of-type(4):before { content: "Edit: ";  font-weight: 800;}
+    td:nth-of-type(4):before { content: "Actions: ";  font-weight: 800;}
 }
 
 @media (max-width: 650px) {

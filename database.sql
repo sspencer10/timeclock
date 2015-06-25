@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2015 at 12:10 AM
+-- Generation Time: Jun 26, 2015 at 01:22 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.5.24
 
@@ -56,61 +56,63 @@ CREATE TABLE IF NOT EXISTS `supervisors` (
   `id` int(5) NOT NULL,
   `firstname` varchar(32) NOT NULL,
   `lastname` varchar(32) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=640 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=690 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `supervisors`
 --
 
 INSERT INTO `supervisors` (`id`, `firstname`, `lastname`) VALUES
-(590, 'Palmer', 'Capasso'),
-(591, 'Rosamaria', 'Guilford'),
-(592, 'Mabelle', 'Casias'),
-(593, 'Gigi', 'Mouser'),
-(594, 'Wilhelmina', 'Taber'),
-(595, 'Henrietta', 'June'),
-(596, 'Sherlene', 'Faye'),
-(597, 'Tam', 'Paoletti'),
-(598, 'Kraig', 'Santillanes'),
-(599, 'Jacelyn', 'Traina'),
-(600, 'Augustus', 'Minear'),
-(601, 'Nadene', 'Farago'),
-(602, 'Michal', 'Eatman'),
-(603, 'Hollis', 'Seman'),
-(604, 'Rena', 'Brannum'),
-(605, 'Luanne', 'Milford'),
-(606, 'Manual', 'Oros'),
-(607, 'Roscoe', 'Dimaio'),
-(608, 'Meaghan', 'Fogel'),
-(609, 'Rachel', 'Doris'),
-(610, 'Elidia', 'Beaman'),
-(611, 'Sharla', 'Nally'),
-(612, 'Saul', 'Yeung'),
-(613, 'Pablo', 'Kite'),
-(614, 'Serena', 'Guajardo'),
-(616, 'Junita', 'Hoyt'),
-(617, 'Jeannine', 'Mcclard'),
-(618, 'Tynisha', 'Stegman'),
-(619, 'Bernard', 'Petree'),
-(620, 'Bronwyn', 'Eastburn'),
-(622, 'Adriana', 'Polin'),
-(623, 'Danille', 'Hertlein'),
-(624, 'Dara', 'Montaluo'),
-(625, 'Fae', 'Petry'),
-(626, 'Claretta', 'Buteau'),
-(627, 'Mallory', 'Dark'),
-(628, 'Norris', 'Budd'),
-(629, 'Michael', 'Lovingood'),
-(630, 'Lenita', 'Wolfson'),
-(631, 'Ailene', 'Reina'),
-(632, 'Deja', 'Mason'),
-(633, 'Huong', 'Hoskin'),
-(634, 'Song', 'Tarkington'),
-(635, 'Collette', 'Nitz'),
-(636, 'Tamala', 'Lazard'),
-(637, 'Sherise', 'Cissell'),
-(638, 'Jaimee', 'Ryland'),
-(639, 'Roselee', 'Salazar');
+(640, 'Palmer', 'Capasso'),
+(641, 'Rosamaria', 'Guilford'),
+(642, 'Mabelle', 'Casias'),
+(643, 'Gigi', 'Mouser'),
+(644, 'Wilhelmina', 'Taber'),
+(645, 'Henrietta', 'June'),
+(646, 'Sherlene', 'Faye'),
+(647, 'Tam', 'Paoletti'),
+(648, 'Kraig', 'Santillanes'),
+(649, 'Jacelyn', 'Traina'),
+(650, 'Augustus', 'Minear'),
+(651, 'Nadene', 'Farago'),
+(652, 'Michal', 'Eatman'),
+(653, 'Hollis', 'Seman'),
+(654, 'Rena', 'Brannum'),
+(655, 'Luanne', 'Milford'),
+(656, 'Manual', 'Oros'),
+(657, 'Roscoe', 'Dimaio'),
+(658, 'Meaghan', 'Fogel'),
+(659, 'Rachel', 'Doris'),
+(660, 'Elidia', 'Beaman'),
+(661, 'Sharla', 'Nally'),
+(662, 'Saul', 'Yeung'),
+(663, 'Pablo', 'Kite'),
+(664, 'Serena', 'Guajardo'),
+(665, 'Na', 'Abdalla'),
+(666, 'Junita', 'Hoyt'),
+(667, 'Jeannine', 'Mcclard'),
+(668, 'Tynisha', 'Stegman'),
+(669, 'Bernard', 'Petree'),
+(670, 'Bronwyn', 'Eastburn'),
+(671, 'Kati', 'Corning'),
+(672, 'Adriana', 'Polin'),
+(673, 'Danille', 'Hertlein'),
+(674, 'Dara', 'Montaluo'),
+(675, 'Fae', 'Petry'),
+(676, 'Claretta', 'Buteau'),
+(677, 'Mallory', 'Dark'),
+(678, 'Norris', 'Budd'),
+(679, 'Michael', 'Lovingood'),
+(680, 'Lenita', 'Wolfson'),
+(681, 'Ailene', 'Reina'),
+(682, 'Deja', 'Mason'),
+(683, 'Huong', 'Hoskin'),
+(684, 'Song', 'Tarkington'),
+(685, 'Collette', 'Nitz'),
+(686, 'Tamala', 'Lazard'),
+(687, 'Sherise', 'Cissell'),
+(688, 'Jaimee', 'Ryland'),
+(689, 'Roselee', 'Salazar');
 
 -- --------------------------------------------------------
 
@@ -122,27 +124,27 @@ CREATE TABLE IF NOT EXISTS `time_entries` (
   `id` int(12) NOT NULL,
   `user_id` int(6) NOT NULL,
   `timeIn` int(16) NOT NULL,
-  `timeOut` int(16) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
+  `timeOut` int(16) NOT NULL,
+  `comments` varchar(150) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `time_entries`
 --
 
-INSERT INTO `time_entries` (`id`, `user_id`, `timeIn`, `timeOut`) VALUES
-(48, 8, 1434653180, 1434653186),
-(49, 8, 1434657982, 1434657985),
-(52, 8, 1434657993, 1434657994),
-(53, 8, 1434657998, 1434658467),
-(54, 8, 1434658765, 1434658771),
-(55, 8, 1434658777, 1434658779),
-(56, 8, 1434658779, 1434658781),
-(57, 8, 1434659259, 1434659261),
-(58, 8, 1434659265, 1434659270),
-(59, 8, 1434659434, 1434659966),
-(60, 8, 1434659969, 1434660169),
-(61, 8, 1434660233, 1434660244),
-(62, 8, 1434661137, 1434662461);
+INSERT INTO `time_entries` (`id`, `user_id`, `timeIn`, `timeOut`, `comments`) VALUES
+(90, 8, 1435255980, 1435266780, 'Quick test comment here. I\\''m liking the way this is beginning to turn out!'),
+(91, 8, 1435263180, 1435274520, ''),
+(92, 8, 1435256760, 1435260360, ''),
+(93, 8, 1435258020, 1435258080, ''),
+(94, 8, 1435258257, 1435258437, ''),
+(95, 30, 1434048960, 1434066960, ''),
+(96, 30, 1435258639, 1435258664, ''),
+(97, 8, 1435258693, 1435258699, ''),
+(98, 8, 1435258774, 1435258790, ''),
+(99, 8, 1435258850, 1435259001, ''),
+(100, 8, 1080253249, 1080256249, ''),
+(101, 8, 1435270860, 1435285260, '');
 
 -- --------------------------------------------------------
 
@@ -163,6 +165,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `zip` int(5) NOT NULL,
   `country` varchar(32) NOT NULL,
   `currentSupervisor` varchar(64) NOT NULL,
+  `payRate` varchar(6) NOT NULL,
   `company` varchar(32) NOT NULL,
   `department` varchar(32) NOT NULL,
   `phone` varchar(14) NOT NULL,
@@ -176,11 +179,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `firstname`, `lastname`, `password`, `email`, `address`, `city`, `state`, `zip`, `country`, `currentSupervisor`, `company`, `department`, `phone`, `lastLogin`, `activated`, `canReactivate`, `isAdmin`) VALUES
-(8, 'matheson', 'Bryce', 'Matheson', '29a41d68fee2587e66df81fd4e40a2a4', 'brycematheson@gmail.com', '1838 W 7225 S', 'West Jordan', 'UT', 84084, 'United States', 'Adriana Polin', 'Intermountain Healthcare', 'Information Technologies', '123-456-7890', '1434657674', 1, 0, 1),
-(15, 'test', 'Testey', 'Test', '098f6bcd4621d373cade4e832627b4f6', 'testsd', '', '', '', 11223, '', 'Jacelyn Traina', 'Intermountain', 'IT', '801-442-6502', '1434037950', 1, 0, 0),
-(30, 'jack', 'Jack', 'Daniels', 'cc03e747a6afbbcbf8be7668acfebee5', 'jackdaniels@test.com', '', '', '', 0, '', 'Michael Lovingood', '', 'IT', '123', '1434578550', 1, 0, 0),
-(31, 'testaccount', 'Test', 'Test', '0efffc51d5e228e69bec75545457b977', 'thisisatest@test.com', '', '', '', 0, '', 'Jacelyn Traina', '', '', '', '', 0, 1, 0);
+INSERT INTO `users` (`id`, `username`, `firstname`, `lastname`, `password`, `email`, `address`, `city`, `state`, `zip`, `country`, `currentSupervisor`, `payRate`, `company`, `department`, `phone`, `lastLogin`, `activated`, `canReactivate`, `isAdmin`) VALUES
+(8, 'matheson', 'Bryce', 'Matheson', '29a41d68fee2587e66df81fd4e40a2a4', 'brycematheson@gmail.com', '1838 W 7225 S', 'West Jordan', 'UT', 84084, 'United States', 'Kraig Santillanes', '25.23', 'Intermountain Healthcare', 'Information Technologies', '123-456-7890', '1435271607', 1, 0, 1),
+(15, 'test', 'Testey', 'Test', '098f6bcd4621d373cade4e832627b4f6', 'testsd', '', '', '', 11223, '', 'Palmer Capasso', '0.00', 'Intermountain', 'Information Technologies', '801-442-6502', '1435079726', 1, 0, 0),
+(30, 'jack', 'Jack', 'Daniels', 'cc03e747a6afbbcbf8be7668acfebee5', 'jackdaniels@test.com', '7232 Nowhere Lane', 'Richland', 'WA', 99352, 'USA', 'Sherise Cissell', '14.00', '', 'Accounting', '123', '1435271555', 1, 0, 0),
+(31, 'testaccount', 'Test', 'Test', '0efffc51d5e228e69bec75545457b977', 'thisisatest@test.com', '', '', '', 0, '', 'Danille Hertlein', '0.00', '', 'Human Resources', '', '', 0, 1, 0);
 
 --
 -- Indexes for dumped tables
@@ -223,12 +226,12 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `supervisors`
 --
 ALTER TABLE `supervisors`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=640;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=690;
 --
 -- AUTO_INCREMENT for table `time_entries`
 --
 ALTER TABLE `time_entries`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=63;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=102;
 --
 -- AUTO_INCREMENT for table `users`
 --

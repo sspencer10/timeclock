@@ -22,10 +22,10 @@ function getFullNameFromID($id) {
 	echo $row['firstname'] . " " . $row['lastname'];
 }
 
-function getFirstName() {
+function getFirstName($id) {
 	global $connect;
 // get the first name using that user's session ID
-	$query = "SELECT firstname FROM users WHERE id='".$_SESSION['user_id']."'";
+	$query = "SELECT firstname FROM users WHERE id='".$id."'";
 	$result = mysqli_query($connect, $query);
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	echo $row['firstname'];
@@ -148,6 +148,7 @@ function sanitize($input) {
             $input = stripslashes($input);
         }
         $input  = cleanInput($input);
+        $input  = htmlentities($input);
         $output = mysql_real_escape_string($input);
     }
     return $output;
