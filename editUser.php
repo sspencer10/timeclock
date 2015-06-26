@@ -60,6 +60,7 @@ include 'header.php';
 		<p>
 			<label>Supervisor:</label>
 			<select name="supervisor">
+			<option>-Select Supervisor-</option>
 			<?php
 			$query2 = "SELECT firstname,lastname FROM supervisors";
 			$result2 = mysqli_query($connect,$query2);

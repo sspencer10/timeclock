@@ -13,9 +13,11 @@ $id = $_POST['user_id'];
 $dateFrom = $_POST['payPeriodDate'];
 if (isset($_POST['dateTo'])) {
 	$dateTo = $_POST['dateTo'];
-	} else {
-		$dateTo = (strtotime($dateFrom) + (getPayPeriodLength() * 86400)-86400);
-	}
+} else if ($dateFrom == "1971-01-01") {
+	$dateTo = time();
+} else {
+	$dateTo = (strtotime($dateFrom) + (getPayPeriodLength() * 86400)-86400);
+}
 
 echo "<table>
 		<tr>
@@ -23,13 +25,14 @@ echo "<table>
 		    	<th>Out Time</th>
 		    	<th>Total Hours</th>
 		    	<th>Actions</th>
-		    	<th>Comments</th>
+		    	<th>Status</th>
+		    	<th>Notes</th>
 		</tr>";
 
-$query = "SELECT * FROM time_entries WHERE user_id = '".$id."' AND timeIn > ".strtotime($dateFrom)." AND timeOut < ".$dateTo." ORDER BY id ASC";
+$query = "SELECT * FROM time_entries WHERE user_id = '".$id."' AND timeIn > ".strtotime($dateFrom)." AND timeOut < ".$dateTo." ORDER BY timeOut ASC";
 		if ($result = mysqli_query($connect,$query)) {
 			while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
-				echo "<tr>";
+				echo "<tr id=\"".$row['id']."\">";
 				echo "<td>".date('D, M j, Y, g:i a', $row['timeIn'])."</td>";
 				if ($row['timeOut'] < $row['timeIn']) {
 					echo "<td></td>";
@@ -43,9 +46,18 @@ $query = "SELECT * FROM time_entries WHERE user_id = '".$id."' AND timeIn > ".st
 					echo "<td>".round((($row['timeOut'] - $row['timeIn'])/3600),2)."</td>";
 				}
 				if (!empty($row['timeOut']) && !empty($row['timeIn'])) {
-						echo "<td><form action='editTime.php' method='POST'><input type='hidden' name='timeID' value='".$row['id']."' /><input type='submit' value='Edit' /></form></td>";
+						echo "<td><form action='editTimeAdmin.php' method='POST'><input type='hidden' name='timeID' value='".$row['id']."' /><button class='editButton' title=\"Edit Entry\" type=\"submit\"><i class=\"fa fa-pencil-square-o\"></i></button></form>";
+						  echo '<button title="Delete Entry" class="del_button deleteButton" id="del-'.$row['id'].'"><i class="fa fa-times-circle"></i>';
+						  echo '</button><button title="Approve Entry" class="approveButton"><i class="fa fa-thumbs-o-up"></i></button><button title="Reject Entry" class="rejectButton"><i class="fa fa-thumbs-o-down"></i></button><button title="Clear Status" class="clearStatusButton"><i class="fa fa-circle-thin"></i></button></td>';
 				} else {
 					echo "<td></td>";
+				}
+				if ($row['status'] == 0) {
+					echo "<td></td>";
+				} else if ($row['status'] == 1) {
+					echo "<td class=\"rejected\">Rejected</td>";
+				} else if ($row['status'] == 2) {
+					echo "<td class=\"approved\">Approved</td>";
 				}
 				if (empty($row['comments'])) {
 					echo "<td></td>";

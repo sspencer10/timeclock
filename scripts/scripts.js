@@ -106,6 +106,75 @@ $(document).on('submit', '#timeAdminEntries', function(e) {
     });
 });
 
+$(document).on('click', '.del_button', function(e) {
+	 e.preventDefault();
+	 if (confirm('Are you sure you want to delete this time entry? This action cannot be undone.')) {
+	 var clickedID = this.id.split('-'); //Split ID string (Split works as PHP explode)
+	 var DbNumberID = clickedID[1]; //and get number from array
+	 var myData = 'recordToDelete='+ DbNumberID; //build a post data structure
+	$(this).hide(); //hide currently clicked delete button
+		jQuery.ajax({
+		type: "POST", // HTTP method POST or GET
+		url: "deleteTime.php", //Where to make Ajax calls
+		dataType:"text", // Data type, HTML, json etc.
+		data:myData, //Form variables
+		success:function(response){
+			$('#'+DbNumberID).fadeOut();
+		},
+		error:function (xhr, ajaxOptions, thrownError){
+			alert(thrownError);
+		}
+	});
+	}
+});
+
+$(document).on('click', '.approveButton', function(e) {
+   	var trid = $(this).closest('tr').attr('id');
+	e.preventDefault();
+		jQuery.ajax({
+		type: "POST",
+		url: "approveTime.php", //Where to make Ajax calls
+		dataType:"text", // Data type, HTML, json etc.
+		data:'id='+trid, //Form variables
+		success:function(response){
+			$("#"+trid+" td:nth-child(5)").css('background-color','green');
+			$("#"+trid+" td:nth-child(5)").css('color','white');
+			$("#"+trid+" td:nth-child(5)").html("Approved");
+		}
+	});
+});
+
+$(document).on('click', '.rejectButton', function(e) {
+   	var trid = $(this).closest('tr').attr('id');
+	e.preventDefault();
+		jQuery.ajax({
+		type: "POST",
+		url: "rejectTime.php", //Where to make Ajax calls
+		dataType:"text", // Data type, HTML, json etc.
+		data:'id='+trid, //Form variables
+		success:function(response){
+			$("#"+trid+" td:nth-child(5)").css('background-color','crimson');
+			$("#"+trid+" td:nth-child(5)").css('color','white');
+			$("#"+trid+" td:nth-child(5)").html("Rejected");
+		}
+	});
+});
+
+$(document).on('click', '.clearStatusButton', function(e) {
+   	var trid = $(this).closest('tr').attr('id');
+	e.preventDefault();
+		jQuery.ajax({
+		type: "POST",
+		url: "clearStatus.php", //Where to make Ajax calls
+		dataType:"text", // Data type, HTML, json etc.
+		data:'id='+trid, //Form variables
+		success:function(response){
+			$("#"+trid+" td:nth-child(5)").css('background-color','white');
+			$("#"+trid+" td:nth-child(5)").html("");
+		}
+	});
+});
+
 function characterCount() {
     // 140 is the max message length
     var remaining = 150 - jQuery('#comments').val().length;

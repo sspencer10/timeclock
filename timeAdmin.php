@@ -13,6 +13,19 @@ if (isLoggedIn() && isAdministrator()) {
 }?>
 <h2>User Time Administration</h2>
 <hr><br>
+		<?php if(isset($_GET['msg'])) {
+			$msg = $_GET['msg'];
+			if ($msg == 3) {
+				echo "<div class='message success'><span>Success: </span>Time entry successfully modified.<span class='closeAlert'>X</span></div>";
+			}
+			else if ($msg == 4) {
+				echo "<div class='message error'><span>Error: </span>There was an error modifying your time entry.<span class='closeAlert'>X</span></div>";
+			}
+			else if ($msg == 5) {
+				echo "<div class='message error'><span>Error: </span>You cannot select a negative time. Your entry has not been modified.<span class='closeAlert'>X</span></div>";
+			}
+		}
+		?>
 <form method="POST" id="timeAdminEntries">
  		<label>Select User: </label>
 	 		<select name="user_id" d="selectUser">
@@ -30,7 +43,7 @@ if (isLoggedIn() && isAdministrator()) {
 		
 			<label>Pay Period: </label>
 	 		<select name="payPeriodDate" id="payPeriodDate" required>
-	 		<option value='2001-06-12'>All Entries</option>
+	 		<option value='1971-01-01'>All Entries</option>
 	 		<?php
 	 		$period = getCurrentPayPeriod();
 			foreach ($period as $dt) {
@@ -54,7 +67,8 @@ if (isLoggedIn() && isAdministrator()) {
 		    	<th>Out Time</th>
 		    	<th>Total Hours</th>
 		    	<th>Actions</th>
-		    	<th>Comments</th>
+		    	<th>Status</th>
+		    	<th>Notes</th>
 		</tr>
 		</table>
 		</div>

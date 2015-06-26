@@ -131,14 +131,41 @@ a.register:visited {
     padding: 15px;
 }
 
-button {
+.login button {
     background-color: black;
     border: none;
     color: white;
+    width: 60px;
     border-radius: 3px;
     padding: 7px 10px;
     float: left;
     margin-top: 10px;
+}
+
+.fa-pencil-square-o {
+    color: #369;
+}
+
+.fa-times-circle {
+    color: crimson;
+}
+
+.fa-thumbs-o-up {
+    color: green;
+}
+
+.fa-thumbs-o-down {
+    color: crimson;
+}
+
+.rejected {
+    background-color: crimson;
+    color: white;
+}
+
+.approved {
+    background-color: green;
+    color: white;
 }
 
 .time table {

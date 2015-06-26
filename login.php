@@ -78,7 +78,7 @@ if (isLoggedIn()) {
 				<input type="password" name="password" maxlength="32" required />
 			</p>
 			<p>
-				<button type="submit">Log In</button>
+				<button class="login" type="submit">Log In</button>
 				<div class="clear"></div>
 			</p>
 			<p><a href="register.php" class="register">Create an account</a> | <a href="#" class="register">Trouble signing in?</a></p>
