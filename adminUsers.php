@@ -19,7 +19,7 @@ if (isLoggedIn() && isAdministrator()) {
 <?php
 $query = "SELECT id,firstname,lastname,currentSupervisor,department,activated,isAdmin FROM users";
 if ($result = mysqli_query($connect,$query)) {
-	echo "<table id='users'>";
+	echo "<table id='users' class='bordered'>";
 	echo "<tr><th>Name</th><th>Supervisor</th><th>Department</th><th>Account Status</th><th>Privileges</th><th>Actions</th>";
 	while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 		echo "<tr>";

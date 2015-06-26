@@ -175,6 +175,48 @@ function totalHoursWorked($id, $timeIn, $timeOut) {
 	}
 }
 
+function totalApprovedHours($id, $timeIn, $timeOut) {
+	global $connect;
+	$totalTime = 0;
+	$query = "SELECT * from time_entries WHERE user_id=".$id." AND timeIn >= ".$timeIn." AND timeOut <= ".$timeOut." AND status=2";
+	if ($result = mysqli_query($connect,$query)) {
+		$query2 = "SELECT * from time_entries WHERE user_id=".$id." AND timeOut=0 ";
+		$result2 = mysqli_query($connect,$query2);
+		if (mysqli_num_rows($result2) == 1) {
+			echo "Clocked in";
+		} else {
+			while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+				$time = $row['timeOut'] - $row['timeIn'];
+				$totalTime += $time;
+			}
+		echo round(($totalTime/3600),2);
+		}
+	} else {
+		echo "Error retrieving results from database";
+	}
+}
+
+function totalRejectedHours($id, $timeIn, $timeOut) {
+	global $connect;
+	$totalTime = 0;
+	$query = "SELECT * from time_entries WHERE user_id=".$id." AND timeIn >= ".$timeIn." AND timeOut <= ".$timeOut." AND status=1";
+	if ($result = mysqli_query($connect,$query)) {
+		$query2 = "SELECT * from time_entries WHERE user_id=".$id." AND timeOut=0 ";
+		$result2 = mysqli_query($connect,$query2);
+		if (mysqli_num_rows($result2) == 1) {
+			echo "Clocked in";
+		} else {
+			while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
+				$time = $row['timeOut'] - $row['timeIn'];
+				$totalTime += $time;
+			}
+		echo round(($totalTime/3600),2);
+		}
+	} else {
+		echo "Error retrieving results from database";
+	}
+}
+
 function getCurrentPayPeriod() {
 	//gets the pay period pattern from JSON config file set by user
 	$date = json_decode(file_get_contents('payPeriodConfig.json'), true);

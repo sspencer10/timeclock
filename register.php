@@ -104,6 +104,6 @@ include 'header.php';
 			</fieldset>
 </form>
 <?php
-}
 include 'footer.php';
+}
 ?>

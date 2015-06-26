@@ -175,6 +175,60 @@ $(document).on('click', '.clearStatusButton', function(e) {
 	});
 });
 
+$(document).on('click', '.clearAllButton', function() {
+	var dates = $(this).attr('value');
+	var exploded = dates.split(" ");
+	var dateFrom = exploded[0];
+	var dateTo = exploded[1];
+	var id = exploded[2];
+		jQuery.ajax({
+		type: "POST",
+		url: "clearAll.php", //Where to make Ajax calls
+		dataType:"text", // Data type, HTML, json etc.
+		data:'dateFrom=' + dateFrom + '&dateTo=' + dateTo + '&user_id=' + id, //Form variables
+		success:function(response){
+			$("td:nth-child(5)").css('background-color','white');
+			$("td:nth-child(5)").html("");
+		}
+	});
+});
+
+$(document).on('click', '.approveAllButton', function(e) {
+	var dates = $(this).attr('value');
+	var exploded = dates.split(" ");
+	var dateFrom = exploded[0];
+	var dateTo = exploded[1];
+	var id = exploded[2];
+		jQuery.ajax({
+		type: "POST",
+		url: "approveAll.php", //Where to make Ajax calls
+		dataType:"text", // Data type, HTML, json etc.
+		data:'dateFrom=' + dateFrom + '&dateTo=' + dateTo + '&user_id=' + id, //Form variables
+		success:function(response){
+			$("td:nth-child(5)").css({'background-color':'green','color':'white'});
+			$("td:nth-child(5)").html("Approved");
+		}
+	});
+});
+
+$(document).on('click', '.rejectAllButton', function(e) {
+	var dates = $(this).attr('value');
+	var exploded = dates.split(" ");
+	var dateFrom = exploded[0];
+	var dateTo = exploded[1];
+	var id = exploded[2];
+		jQuery.ajax({
+		type: "POST",
+		url: "rejectAll.php", //Where to make Ajax calls
+		dataType:"text", // Data type, HTML, json etc.
+		data:'dateFrom=' + dateFrom + '&dateTo=' + dateTo + '&user_id=' + id, //Form variables
+		success:function(response){
+			$("td:nth-child(5)").css({'background-color':'crimson','color':'white'});
+			$("td:nth-child(5)").html("Rejected");
+		}
+	});
+});
+
 function characterCount() {
     // 140 is the max message length
     var remaining = 150 - jQuery('#comments').val().length;

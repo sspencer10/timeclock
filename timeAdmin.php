@@ -61,7 +61,7 @@ if (isLoggedIn() && isAdministrator()) {
 	 </form>
 	 <hr>
 		<div id="timeEntries">
-		<table>
+		<table class="bordered">
 		<tr>
 		    	<th>In Time</th>
 		    	<th>Out Time</th>

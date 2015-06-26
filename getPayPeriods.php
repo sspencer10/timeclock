@@ -16,15 +16,16 @@ if (isset($_POST['firstDate'])) {
 	$firstDate = getCurrentPayPeriodStartDate();
 }
 
-echo "<table id=\"timeEntries\">
+echo "<table class=\"bordered\">
 <tr>
     	<th>In Time</th>
     	<th>Out Time</th>
     	<th>Total Hours</th>
     	<th>Edit</th>
+    	<th>Status</th>
     </tr>";
 
-$query = "SELECT id,timeIn,timeOut FROM time_entries WHERE user_id = '".$_SESSION['user_id']."' AND timeIn >= '".strtotime($firstDate)."' AND timeOut <= '".(strtotime($firstDate) + (getPayPeriodLength() * 86400))."' ORDER BY id ASC";
+$query = "SELECT id,timeIn,timeOut,status FROM time_entries WHERE user_id = '".$_SESSION['user_id']."' AND timeIn >= '".strtotime($firstDate)."' AND timeOut <= '".(strtotime($firstDate) + (getPayPeriodLength() * 86400))."' ORDER BY id ASC";
 		if ($result = mysqli_query($connect,$query)) {
 			while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 				echo "<tr>";
@@ -49,14 +50,26 @@ $query = "SELECT id,timeIn,timeOut FROM time_entries WHERE user_id = '".$_SESSIO
 				} else {
 					echo "<td></td>";
 				}
+				if ($row['status'] == 0) {
+					echo "<td></td>";
+				} else if ($row['status'] == 1) {
+					echo "<td class='rejected'>Rejected</td>";
+				} else if ($row['status'] == 2) {
+					echo "<td class='approved'>Approved</td>";
+				}
 				echo "</tr>";
 			}
 		} else {
 			echo "Error retrieving information from database.";
 		}
-		echo "</table><p class='largeText'>Total hours worked this pay period: <span><strong>";
-		
+		echo "</table><span class='hoursWorked'>Total hours worked: <span><strong>";
 		totalHoursWorked($_SESSION['user_id'], strtotime($firstDate), (strtotime($firstDate) + (getPayPeriodLength() * 86400)));
-		echo "</strong></span></p>";
+		echo "</span></strong></span>";
+		echo "<span class='hoursWorked'>Approved hours: <span><strong>";
+		totalApprovedHours($_SESSION['user_id'], strtotime($firstDate), (strtotime($firstDate) + (getPayPeriodLength() * 86400)));
+		echo "</span></strong></span>";
+		echo "<span class='hoursWorked'>Rejected hours: <span><strong>";
+		totalRejectedHours($_SESSION['user_id'], strtotime($firstDate), (strtotime($firstDate) + (getPayPeriodLength() * 86400)));
+		echo "</strong></span></span></p>";
 		
 ?>

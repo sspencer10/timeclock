@@ -14,12 +14,12 @@ $dateFrom = $_POST['payPeriodDate'];
 if (isset($_POST['dateTo'])) {
 	$dateTo = $_POST['dateTo'];
 } else if ($dateFrom == "1971-01-01") {
-	$dateTo = time();
+	$dateTo = (time() + (getPayPeriodLength() * 86400));
 } else {
-	$dateTo = (strtotime($dateFrom) + (getPayPeriodLength() * 86400)-86400);
+	$dateTo = (strtotime($dateFrom) + (getPayPeriodLength() * 86400));
 }
 
-echo "<table>
+echo "<table class='bordered'>
 		<tr>
 		    	<th>In Time</th>
 		    	<th>Out Time</th>
@@ -70,9 +70,7 @@ $query = "SELECT * FROM time_entries WHERE user_id = '".$id."' AND timeIn > ".st
 		} else {
 			echo "Error retrieving information from database.";
 		}
-		echo "</table>";
-		echo "<p class='largeText'>Total hours worked: <span><strong>";
-		totalHoursWorked($id, strtotime($dateFrom), $dateTo);
-		echo "</strong></span></p>";
-		
-?>
+		echo "</table><br>";
+		?>
+		<div class="timeApprovalButtons">
+		<button class="approveAllButton" title="Approve All" value="<?php echo strtotime($dateFrom)." ".$dateTo." ".$id; ?>">Approve All</button><button class="rejectAllButton" value="<?php echo strtotime($dateFrom)." ".$dateTo." ".$id; ?>" title="Reject All">Reject All</button><button class="clearAllButton" title="Clear All" value="<?php echo strtotime($dateFrom)." ".$dateTo." ".$id; ?>">Clear All</button></div>
