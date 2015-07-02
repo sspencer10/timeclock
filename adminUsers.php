@@ -1,9 +1,8 @@
 <?php
 require_once 'connect.php';
 require_once 'functions.php';
-$pageTitle = "User Administrator Panel";
 include 'header.php';
-
+$pageTitle = "User Administrator Panel";
 
 if (isLoggedIn() && isAdministrator()) {
 	

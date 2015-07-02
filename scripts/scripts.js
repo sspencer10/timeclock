@@ -1,18 +1,3 @@
-(function($) {
-$(document).ready(function() {
-$('#cssmenu').prepend('<div id="menu-button">Menu</div>');
-	$('#cssmenu #menu-button').on('click', function(){
-		var menu = $(this).next('ul');
-		if (menu.hasClass('open')) {
-			menu.removeClass('open');
-		}
-		else {
-			menu.addClass('open');
-		}
-	});
-});
-})(jQuery);
-
 //table filtering
 $(function(){
   $('#searchf').keyup(function(){
@@ -28,6 +13,65 @@ $(function(){
     });
   });
 });
+
+(function($) {
+$(document).ready(function() {
+$('#cssmenu').prepend('<div id="menu-button">Menu</div>');
+	$('#cssmenu #menu-button').on('click', function(){
+		var menu = $(this).next('ul');
+		if (menu.hasClass('open')) {
+			menu.removeClass('open');
+		}
+		else {
+			menu.addClass('open');
+		}
+	});
+
+
+	if (document.getElementById('activatedFalse').checked) {
+		document.getElementById('canReactivateTrue').disabled = false;
+    	document.getElementById('canReactivateFalse').disabled = false;
+    	$(".isAdmin").css("color", "#c2c0c0");
+	} else if (document.getElementById('activatedTrue').checked) {
+		document.getElementById('canReactivateTrue').disabled = true;
+    	document.getElementById('canReactivateFalse').disabled = true;
+    	$(".canReactivate").css("color", "#c2c0c0");
+	}
+
+    document.getElementById('activatedTrue').onclick = function() {
+    document.getElementById('canReactivateTrue').disabled = true;
+    document.getElementById('canReactivateFalse').disabled = true;
+    document.getElementById('isAdminTrue').disabled = false;
+    document.getElementById('isAdminFalse').disabled = false;
+    $(".canReactivate").css("color", "#c2c0c0");
+    $(".isAdmin").css("color", "#000");
+	}
+
+	document.getElementById('activatedFalse').onclick = function() {
+    document.getElementById('canReactivateTrue').disabled = false;
+    document.getElementById('canReactivateFalse').disabled = false;
+    document.getElementById('isAdminTrue').disabled = true;
+    document.getElementById('isAdminFalse').disabled = true;
+    $(".canReactivate").css("color", "#000");
+    $(".isAdmin").css("color", "#c2c0c0");
+	}
+
+
+function characterCount() {
+    // 140 is the max message length
+    var remaining = 150 - jQuery('#comments').val().length;
+    jQuery('.characterCountdown').text(remaining + ' characters remaining.');
+}
+
+
+    characterCount();
+    $('#comments').change(characterCount);
+    $('#comments').keyup(characterCount);
+
+
+
+});
+})(jQuery);
 
 (function($) {
 	$.fn.autoSubmit = function(options) {
@@ -101,7 +145,7 @@ $(document).on('submit', '#timeAdminEntries', function(e) {
         url: "getUserPaymentEntries.php",
         data: dataString,
         success: function(data) {
-        	$('#timeEntries').html(data);
+        	$('#timeEntriesAdministrator').html(data);
         }
     });
 });
@@ -229,17 +273,6 @@ $(document).on('click', '.rejectAllButton', function(e) {
 	});
 });
 
-function characterCount() {
-    // 140 is the max message length
-    var remaining = 150 - jQuery('#comments').val().length;
-    jQuery('.characterCountdown').text(remaining + ' characters remaining.');
-}
-
-jQuery(document).ready(function($) {
-    characterCount();
-    $('#comments').change(characterCount);
-    $('#comments').keyup(characterCount);
-});
 
 //responsive nav scripts
 $(function() {
@@ -258,34 +291,4 @@ $(function() {
 			menu.removeAttr('style');
 		}
 	});
-});
-
-$( document ).ready(function() {
-	if (document.getElementById('activatedFalse').checked) {
-		document.getElementById('canReactivateTrue').disabled = false;
-    	document.getElementById('canReactivateFalse').disabled = false;
-    	$(".isAdmin").css("color", "#c2c0c0");
-	} else if (document.getElementById('activatedTrue').checked) {
-		document.getElementById('canReactivateTrue').disabled = true;
-    	document.getElementById('canReactivateFalse').disabled = true;
-    	$(".canReactivate").css("color", "#c2c0c0");
-	}
-
-    document.getElementById('activatedTrue').onclick = function() {
-    document.getElementById('canReactivateTrue').disabled = true;
-    document.getElementById('canReactivateFalse').disabled = true;
-    document.getElementById('isAdminTrue').disabled = false;
-    document.getElementById('isAdminFalse').disabled = false;
-    $(".canReactivate").css("color", "#c2c0c0");
-    $(".isAdmin").css("color", "#000");
-	}
-
-	document.getElementById('activatedFalse').onclick = function() {
-    document.getElementById('canReactivateTrue').disabled = false;
-    document.getElementById('canReactivateFalse').disabled = false;
-    document.getElementById('isAdminTrue').disabled = true;
-    document.getElementById('isAdminFalse').disabled = true;
-    $(".canReactivate").css("color", "#000");
-    $(".isAdmin").css("color", "#c2c0c0");
-	}
 });

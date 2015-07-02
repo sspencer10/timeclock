@@ -46,7 +46,7 @@ echo "Time in: ".date('D, M j, Y, g:i a', $row['timeIn'])."<br>";
 echo "Time out: ".date('D, M j, Y, g:i a', $row['timeOut']);
 ?>
 <br><br>
-<form action="editTimeAdmin.php" method="POST">
+<form action="edittimeAdmin.php" method="POST">
 <strong>Modify Values:</strong><br>
 <label>Time in: </label><input type="datetime-local" name="timeIn" value="<?php echo date('Y-m-d\TH:i', $row['timeIn']); ?>"/><br><br>
 <label>Time out: </label><input type="datetime-local" name="timeOut" value="<?php echo date('Y-m-d\TH:i', $row['timeOut']); ?>"/><br>

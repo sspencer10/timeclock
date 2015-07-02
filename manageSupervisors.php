@@ -63,7 +63,7 @@ if (($handle = fopen($file, "r")) !== FALSE) {
 	<?php
 	$query = "SELECT id,firstname,lastname FROM supervisors";
 	if ($result = mysqli_query($connect,$query)) {
-		echo "<table>";
+		echo "<table id=\"supervisorsTable\">";
 		echo "<tr><th>Supervisor</th><th>Action</th>";
 		while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 			echo "<tr>";

@@ -60,7 +60,7 @@ if (isLoggedIn() && isAdministrator()) {
 	 		<input type="submit" value="Search" />
 	 </form>
 	 <hr>
-		<div id="timeEntries">
+		<div id="timeEntriesAdministrator">
 		<table class="bordered">
 		<tr>
 		    	<th>In Time</th>

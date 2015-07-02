@@ -46,7 +46,7 @@ $query = "SELECT * FROM time_entries WHERE user_id = '".$id."' AND timeIn > ".st
 					echo "<td>".round((($row['timeOut'] - $row['timeIn'])/3600),2)."</td>";
 				}
 				if (!empty($row['timeOut']) && !empty($row['timeIn'])) {
-						echo "<td><form action='editTimeAdmin.php' method='POST'><input type='hidden' name='timeID' value='".$row['id']."' /><button class='editButton' title=\"Edit Entry\" type=\"submit\"><i class=\"fa fa-pencil-square-o\"></i></button></form>";
+						echo "<td><form action='edittimeAdmin.php' method='POST'><input type='hidden' name='timeID' value='".$row['id']."' /><button class='editButton' title=\"Edit Entry\" type=\"submit\"><i class=\"fa fa-pencil-square-o\"></i></button></form>";
 						  echo '<button title="Delete Entry" class="del_button deleteButton" id="del-'.$row['id'].'"><i class="fa fa-times-circle"></i>';
 						  echo '</button><button title="Approve Entry" class="approveButton"><i class="fa fa-thumbs-o-up"></i></button><button title="Reject Entry" class="rejectButton"><i class="fa fa-thumbs-o-down"></i></button><button title="Clear Status" class="clearStatusButton"><i class="fa fa-circle-thin"></i></button></td>';
 				} else {

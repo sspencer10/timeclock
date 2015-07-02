@@ -1,6 +1,6 @@
 <?php
-require 'connect.php';
-require 'functions.php';
+require_once 'connect.php';
+require_once 'functions.php';
 
 if (!isLoggedIn()) {
 	$pageTitle = "Login";
@@ -53,6 +53,9 @@ include 'header.php';
 			}
 			else if ($msg == 5) {
 				echo "<div class='message error'><span>Error: </span>You cannot select a negative time. Your entry has not been modified.<span class='closeAlert'>X</span></div>";
+			}
+			else if ($msg == 6) {
+				echo "<div class='message error'><span>Error: </span>You cannot select a future time. Your entry has not been modified.<span class='closeAlert'>X</span></div>";
 			}
 		}
 		?>
