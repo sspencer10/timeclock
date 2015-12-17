@@ -15,4 +15,6 @@ Update the connect.php file with your hostname, username, and password. Everythi
 ### Login using temp account and pass
 Login using "admin" and a password of "test123".
 
+Note: There are still a few peices not yet working, such as the registration email stuff. But I'll get there eventually. For now, you can manually approve users using the "User Admin" page from the dropdown menu.
+
 That should be it! You're good to go!
