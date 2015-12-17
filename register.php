@@ -20,7 +20,7 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['use
 		if ($password == $confirmPassword) {
 			if (!isRegisteredUser($username)) {
 				if (!isEmailUsed($email)) {
-					$query = "INSERT INTO users(firstname, lastname, username, password, email, registerDate) VALUES ('".mysql_real_escape_string($firstname)."','".mysql_real_escape_string($lastname)."','".mysql_real_escape_string($username)."','".md5(mysql_real_escape_string($password))."','".mysql_real_escape_string($email)."', ".time().")";
+					$query = "INSERT INTO users(firstname, lastname, username, password, email, registerDate) VALUES ('".($firstname)."','".($lastname)."','".($username)."','".md5(($password))."','".($email)."', ".time().")";
 					if ($result = mysqli_query($connect, $query)) {
 						header('Location: register.php?msg=1');
 					} else {

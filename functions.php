@@ -149,7 +149,7 @@ function sanitize($input) {
         }
         $input  = cleanInput($input);
         $input  = htmlentities($input);
-        $output = mysql_real_escape_string($input);
+        $output = $input;
     }
     return $output;
 }

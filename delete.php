@@ -11,7 +11,7 @@ if (isLoggedIn() && isAdministrator()) {
 }
 
 if(isset($_POST['delete_id']) && !empty($_POST['delete_id'])) {
-  $id = mysql_real_escape_string($_POST['delete_id']);
+  $id = $_POST['delete_id'];
   $result = mysqli_query($connect, "DELETE FROM users WHERE id=".$id);
   header('Location: adminUsers.php');
 }

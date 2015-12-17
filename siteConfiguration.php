@@ -22,7 +22,7 @@ if (isset($_POST['companyName']) && (!empty($_POST['companyName']))) {
 
 if (isset($_POST['payPeriodStart']) && isset($_POST['payPeriodLength']) && !empty($_POST['payPeriodStart']) && !empty($_POST['payPeriodLength'])) {
 	$dateTime = strtotime($_POST['payPeriodStart']);
-	if (sanitize(file_put_contents('payPeriodConfig.json', json_encode(array('startDate' => $dateTime, 'length' => $_POST['payPeriodLength']))))) {
+	if (file_put_contents('payPeriodConfig.json', json_encode(array('startDate' => $dateTime, 'length' => $_POST['payPeriodLength'])))) {
 			header('Location:siteConfiguration.php?msg=5');
 	} else {
 		header('Location:siteConfiguration.php?msg=6');

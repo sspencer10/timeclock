@@ -59,7 +59,7 @@ include 'header.php';
 			}
 		}
 		?>
-	</div>
+		</div>
 	<div id="timeEntries">
 	<?php include 'getPayPeriods.php'; ?>
 	</div>

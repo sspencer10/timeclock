@@ -14,7 +14,7 @@ if (isLoggedIn()) {
 		$password = $_POST['password'];
 
 		if (!empty($username) && (!empty($password))) {
-			$query = "SELECT id,username,password,activated,canReactivate FROM users WHERE username='".mysql_real_escape_string($username)."' AND password='".md5(mysql_real_escape_string($password))."'";
+			$query = "SELECT id,username,password,activated,canReactivate FROM users WHERE username='".$username."' AND password='".md5($password)."'";
 			if ($result = mysqli_query($connect, $query)) {
 				$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 				if ($row_count = mysqli_num_rows($result) == 1) {

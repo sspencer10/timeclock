@@ -22,7 +22,6 @@ require_once 'functions.php';
 							echo "<li class='has-sub'><a href='#'>Admin</a>
 								<ul>
 									<li><a href='adminUsers.php'>User Admin</a></li>
-									<li><a href='manageSupervisors.php'>Supervisor Manager</a></li>
 									<li><a href='siteMessage.php'>Site-wide Message</a></li>
 									<li><a href='siteConfiguration.php'>Site Configuration</a></li>
 									<li><a href='timeAdmin.php'>User Time Admin</a></li>

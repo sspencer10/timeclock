@@ -27,33 +27,47 @@ $('#cssmenu').prepend('<div id="menu-button">Menu</div>');
 		}
 	});
 
-
+	// On initial page load
 	if (document.getElementById('activatedFalse').checked) {
 		document.getElementById('canReactivateTrue').disabled = false;
     	document.getElementById('canReactivateFalse').disabled = false;
+    	document.getElementById('isSupervisorTrue').disabled = false;
+    	document.getElementById('isSupervisorFalse').disabled = false;
     	$(".isAdmin").css("color", "#c2c0c0");
+    	$(".isSupervisor").css("color", "#c2c0c0");
 	} else if (document.getElementById('activatedTrue').checked) {
 		document.getElementById('canReactivateTrue').disabled = true;
     	document.getElementById('canReactivateFalse').disabled = true;
+    	document.getElementById('isSupervisorTrue').disabled = false;
+    	document.getElementById('isSupervisorFalse').disabled = false;
     	$(".canReactivate").css("color", "#c2c0c0");
+
 	}
 
+	// Once 'account active' has been clicked
     document.getElementById('activatedTrue').onclick = function() {
     document.getElementById('canReactivateTrue').disabled = true;
     document.getElementById('canReactivateFalse').disabled = true;
     document.getElementById('isAdminTrue').disabled = false;
     document.getElementById('isAdminFalse').disabled = false;
+    document.getElementById('isSupervisorTrue').disabled = false;
+    document.getElementById('isSupervisorFalse').disabled = false;
     $(".canReactivate").css("color", "#c2c0c0");
     $(".isAdmin").css("color", "#000");
+    $(".isSupervisor").css("color", "#000");
 	}
 
+	//Once 'account inactive' has been clicked
 	document.getElementById('activatedFalse').onclick = function() {
     document.getElementById('canReactivateTrue').disabled = false;
     document.getElementById('canReactivateFalse').disabled = false;
     document.getElementById('isAdminTrue').disabled = true;
     document.getElementById('isAdminFalse').disabled = true;
+    document.getElementById('isSupervisorTrue').disabled = true;
+    document.getElementById('isSupervisorFalse').disabled = true;
     $(".canReactivate").css("color", "#000");
     $(".isAdmin").css("color", "#c2c0c0");
+    $(".isSupervisor").css("color", "#c2c0c0");
 	}
 
 
@@ -63,14 +77,11 @@ function characterCount() {
     jQuery('.characterCountdown').text(remaining + ' characters remaining.');
 }
 
-
-    characterCount();
+characterCount();
     $('#comments').change(characterCount);
     $('#comments').keyup(characterCount);
 
-
-
-});
+	});
 })(jQuery);
 
 (function($) {

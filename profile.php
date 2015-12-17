@@ -9,15 +9,42 @@ if (!isLoggedIn()) {
 $pageTitle = "Profile";
 include 'header.php';
 
+if(isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']) && isset($_POST['address']) && isset($_POST['city']) && isset($_POST['state']) && isset($_POST['zip']) && isset($_POST['country']) && isset($_POST['department']) && isset($_POST['phone'])) {
+	if (!empty($_POST['firstname']) && !empty($_POST['lastname']) && !empty($_POST['email']) && !empty($_POST['department']) && !empty($_POST['phone'])) {
+  		$query = "UPDATE users SET firstname = '".$_POST['firstname']."',lastname = '".$_POST['lastname']."',email = '".$_POST['email']."',address = '".$_POST['address']."',city = '".$_POST['city']."',state = '".$_POST['state']."',zip = '".$_POST['zip']."',country = '".$_POST['country']."',department = '".$_POST['department']."',phone = '".$_POST['phone']."' WHERE id=".$_POST['id'];
+  		if ($result = mysqli_query($connect, $query)) {
+			header('Location:profile.php?msg=2');
+		}
+		else {
+			header('Location:profile.php?msg=3');
+		}
+	} else {
+		header('Location:profile.php?msg=1');
+	}
+}
+
 $query = "SELECT * FROM users WHERE id = ".$_SESSION['user_id'];
 $result = mysqli_query($connect, $query);
 $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
 ?>
-	<h2><?php echo getFirstName($_SESSION['user_id']); ?>'s Profile</h2>
-	<p>To change your personal information, click inside any of the fields. <u>Your information will be saved automatically.</u></p>	
-
-<form id="ajax-form" class="autosubmit" method="POST" action="updateProfile.php">
+	<h2><?php echo getFirstName($_SESSION['user_id']); ?>'s Profile</h2>	
+	<div class="message">
+		<?php if(isset($_GET['msg'])) {
+			$msg = $_GET['msg'];
+			if ($msg == 1) {
+				echo "<div class='message error'><span>Error: </span>One or more required fields below were left empty.<span class='closeAlert'>X</span></div>";
+			}
+			else if ($msg == 2) {
+				echo "<div class='message success'><span>Success: </span>Your profile has been successfully updated.<span class='closeAlert'>X</span></div>";
+			}
+			else if ($msg == 3) {
+				echo "<div class='message error'><span>Error: </span>An error occurred with the database.<span class='closeAlert'>X</span></div>";
+			}
+		}
+		?>
+	</div>
+<form method="POST" action="profile.php">
 	<fieldset>
 		<legend>Personal Information</legend>
 		<p>
@@ -82,6 +109,8 @@ $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 		</p>
 		<input id="where" type="hidden" name="id" value="<?php echo $row['id'] ?>" />
 	</fieldset>
+	<br>
+	<input type="submit" value="Update Profile" />
 </form>
 <p id="notice"></p>
 <small><strong>Last login: </strong><?php echo getLastLogin(); ?>.</small>

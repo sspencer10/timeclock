@@ -23,7 +23,7 @@ if ($result = mysqli_query($connect,$query)) {
 	while ($row = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 		echo "<tr>";
 		echo "<td>".ucfirst($row['firstname']) . " " . ucfirst($row['lastname']) . "</td>";
-		echo "<td>".ucfirst($row['currentSupervisor'])."</td>";
+		if ($row['currentSupervisor'] == '-Select Supervisor-') { echo "<td>(None selected)</td>"; } else { echo "<td>".ucfirst($row['currentSupervisor'])."</td>"; }
 		echo "<td>".ucfirst($row['department'])."</td>";
 		if ($row['activated'] == 1) { echo "<td>Active</td>"; } else { echo "<td>Inactive</td>"; }
 		if ($row['activated'] == 0) {

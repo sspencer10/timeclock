@@ -64,10 +64,10 @@ $query = "SELECT id,timeIn,timeOut,status FROM time_entries WHERE user_id = '".$
 		}
 		echo "</table><span class='hoursWorked'>Total hours worked: <span><strong>";
 		totalHoursWorked($_SESSION['user_id'], strtotime($firstDate), (strtotime($firstDate) + (getPayPeriodLength() * 86400)));
-		echo "</span></strong></span>";
+		echo "</span></strong></span><br>";
 		echo "<span class='hoursWorked'>Approved hours: <span><strong>";
 		totalApprovedHours($_SESSION['user_id'], strtotime($firstDate), (strtotime($firstDate) + (getPayPeriodLength() * 86400)));
-		echo "</span></strong></span>";
+		echo "</span></strong></span><br>";
 		echo "<span class='hoursWorked'>Rejected hours: <span><strong>";
 		totalRejectedHours($_SESSION['user_id'], strtotime($firstDate), (strtotime($firstDate) + (getPayPeriodLength() * 86400)));
 		echo "</strong></span></span></p>";

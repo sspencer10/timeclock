@@ -12,7 +12,7 @@ if (isLoggedIn() && isAdministrator()) {
 }
 
 if(isset($_POST['edit_id']) && !empty($_POST['edit_id'])) {
-  	$id = mysql_real_escape_string($_POST['edit_id']);
+  	$id = $_POST['edit_id'];
   	$query = "SELECT * FROM users WHERE id=".$id;
   	mysqli_query($connect, $query);
   	$result = mysqli_query($connect, $query);
@@ -62,7 +62,7 @@ include 'header.php';
 			<select name="supervisor">
 			<option>-Select Supervisor-</option>
 			<?php
-			$query2 = "SELECT firstname,lastname FROM supervisors";
+			$query2 = "SELECT firstname,lastname FROM users WHERE isSupervisor = 1";
 			$result2 = mysqli_query($connect,$query2);
 			while ($row2 = mysqli_fetch_array($result2,MYSQLI_ASSOC)) {
 			  echo "<option value='".ucfirst($row2['firstname'])." ".ucfirst($row2['lastname'])."'";
@@ -103,6 +103,12 @@ include 'header.php';
 			<label>Privileges:</label><br><br>
 			<input type="radio" id="isAdminTrue" name="isadmin" <?php if ($row['isAdmin'] == 1) echo 'checked'; ?> value="1"><label for="isAdminTrue">Administrator</label>
 			<input type="radio" id="isAdminFalse" name="isadmin" <?php if ($row['isAdmin'] == 0) echo 'checked'; ?> value="0"><label for="isAdminFalse">Standard</label>
+		</p>
+		<hr>
+		<p class="isSupervisor">
+			<label> User Is Supervisor?</label><br><br>
+			<input type="radio" id="isSupervisorTrue" name="issupervisor" <?php if ($row['isSupervisor'] == 1) echo 'checked'; ?> value="1"><label for="isSupervisor">Yes</label>
+			<input type="radio" id="isSupervisorFalse" name="issupervisor" <?php if ($row['isSupervisor'] == 0) echo 'checked'; ?> value="0"><label for="isSupervisor">No</label>
 		</p>
 		<p><small><?php echo getFullNameFromID($id); ?> last logged in on <strong><?php echo getLastLoginById($id); ?></strong></small></p>
 		<input type="hidden" name="user_id" value="<?php echo $id ?>" />

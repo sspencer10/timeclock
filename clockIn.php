@@ -10,7 +10,7 @@ if (isLoggedIn()) {
 }
 
 if(isset($_POST['clockIn'])) {
-	$id = mysql_real_escape_string($_POST['clockIn']);
+	$id = $_POST['clockIn'];
 	$time = getdate();
 
 	$result2 = mysqli_query($connect,"SELECT * FROM time_entries WHERE timeOut = 0 AND user_id =".$_SESSION['user_id']."");
