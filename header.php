@@ -25,6 +25,7 @@ require_once 'functions.php';
 									<li><a href='siteMessage.php'>Site-wide Message</a></li>
 									<li><a href='siteConfiguration.php'>Site Configuration</a></li>
 									<li><a href='timeAdmin.php'>User Time Admin</a></li>
+									<li><a href='timeEmployee.php'>Employees Time Cards</a></li>
 								</ul>
 							</li>";
 						}
