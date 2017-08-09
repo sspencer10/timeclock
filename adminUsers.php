@@ -43,6 +43,7 @@ if ($result = mysqli_query($connect,$query)) {
 	echo "Error retrieving information from database.";
 }
 ?>
+<a href="./register.php">Add New User</a>
 
 <?php
 	include 'footer.php';

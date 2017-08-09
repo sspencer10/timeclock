@@ -3,10 +3,7 @@ require_once 'connect.php';
 require_once 'functions.php';
 $pageTitle = "Register";
 
-if (isLoggedIn()) {
-	echo "You are already registered. You will be redirected in 5 seconds.";
-	header('refresh:3;url=index.php');
-} else {
+ {
 
 if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['username']) && isset($_POST['password']) && isset($_POST['confirmPassword']) && isset($_POST['email'])) {
 	$firstname = ($_POST['firstname']);
@@ -22,7 +19,7 @@ if (isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['use
 				if (!isEmailUsed($email)) {
 					$query = "INSERT INTO users(firstname, lastname, username, password, email, registerDate) VALUES ('".($firstname)."','".($lastname)."','".($username)."','".md5(($password))."','".($email)."', ".time().")";
 					if ($result = mysqli_query($connect, $query)) {
-						header('Location: register.php?msg=1');
+						header('Location: ./adminUsers.php');
 					} else {
 						header('Location: register.php?msg=2');
 					}

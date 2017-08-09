@@ -16,7 +16,6 @@ require_once 'functions.php';
 	<div id='cssmenu'>
 		<ul>
 		   <li><a href='index.php'><span>Home</span></a></li>
-		   <?php if (!isLoggedIn()) { echo "<li><a href='register.php'>Register</a></li>"; } ?>
 		   <?php if (isLoggedIn()) {
 						if (isAdministrator()) {
 							echo "<li class='has-sub'><a href='#'>Admin</a>

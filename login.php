@@ -81,7 +81,6 @@ if (isLoggedIn()) {
 				<button class="login" type="submit">Log In</button>
 				<div class="clear"></div>
 			</p>
-			<p><a href="register.php" class="register">Create an account</a> | <a href="#" class="register">Trouble signing in?</a></p>
 		</div>
 	</form>
 	<div class="clear"></div>
