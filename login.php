@@ -41,8 +41,8 @@ if (isLoggedIn()) {
 }
 ?>
 <div class="companyInfo">
-	<h2>Welcome to the Time Tracking & Management System</h2>
-	<p>If you have questions about time adjustments, payroll or work policies, please contact your payroll administrator or company help desk.</p>
+	<h2><?php echo $p = json_decode(file_get_contents('companyName.json'));?> Time Clock</h2><br>
+	<img src="./uploads/companyLogo.jpg">
 </div>
 <div class="login">
 	<form action="login.php" method="POST" class="center">

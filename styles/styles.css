@@ -56,6 +56,10 @@ img {
     text-align: center;
 }
 
+.companyInfo > img {
+    width: 50%;
+}
+
 .login {
     margin: 0 auto;
     width: 50%;
@@ -482,6 +486,10 @@ footer {
         width: 100%;
         padding: 0px;
         border-bottom: 1px solid gainsboro;
+    }
+    .companyInfo > img{
+        width: 40%;
+        margin-bottom: 15px;
     }
 
     .company h2 {
