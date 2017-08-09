@@ -219,16 +219,7 @@ table {
 }
 
 .bordered th {
-    background-color: #dce9f9;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#ebf3fc), to(#dce9f9));
-    background-image: -webkit-linear-gradient(top, #ebf3fc, #dce9f9);
-    background-image:    -moz-linear-gradient(top, #ebf3fc, #dce9f9);
-    background-image:     -ms-linear-gradient(top, #ebf3fc, #dce9f9);
-    background-image:      -o-linear-gradient(top, #ebf3fc, #dce9f9);
-    background-image:         linear-gradient(top, #ebf3fc, #dce9f9);
-    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; 
-    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;  
-    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;        
+    background-color: #cccccc;       
     border-top: none;
     text-shadow: 0 1px 0 rgba(255,255,255,.5); 
 }
@@ -567,13 +558,7 @@ footer {
 #cssmenu {
     width: auto;
     font-family: 'Open Sans', Helvetica, sans-serif;
-    background: #39b1cc;
-    background: -moz-linear-gradient(top, #51bbd2 0%, #2d97af 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #51bbd2), color-stop(100%, #2d97af));
-    background: -webkit-linear-gradient(top, #51bbd2 0%, #2d97af 100%);
-    background: -o-linear-gradient(top, #51bbd2 0%, #2d97af 100%);
-    background: -ms-linear-gradient(top, #51bbd2 0%, #2d97af 100%);
-    background: linear-gradient(to bottom, #51bbd2 0%, #2d97af 100%);
+    background: #d40101;
     margin-bottom: 30px;
 }
 #cssmenu > ul {
@@ -762,7 +747,7 @@ only screen and (min-device-pixel-ratio: 2) and (max-width: 1024px),
 only screen and (min-resolution: 192dpi) and (max-width: 1024px),
 only screen and (min-resolution: 2dppx) and (max-width: 1024px) {
     #cssmenu {
-        background: #39b1cc;
+        background: #d40101;
         margin-bottom:15px;
     }
     #cssmenu > ul {
