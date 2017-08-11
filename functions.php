@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-date_default_timezone_set('America/Boise');
+date_default_timezone_set('America/Chicago');
 
 function isLoggedIn() {
 	if (isset($_SESSION['user_id'])) {
@@ -29,6 +29,15 @@ function getFirstName($id) {
 	$result = mysqli_query($connect, $query);
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	echo $row['firstname'];
+}
+
+function getLastName($id) {
+	global $connect;
+// get the first name using that user's session ID
+	$query = "SELECT lastname FROM users WHERE id='".$id."'";
+	$result = mysqli_query($connect, $query);
+	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+	echo $row['lastname'];
 }
 
 function isRegisteredUser($username) {
@@ -171,7 +180,7 @@ function totalHoursWorked($id, $timeIn, $timeOut) {
 		echo round(($totalTime/3600),2);
 		}
 	} else {
-		echo "Error retrieving results from database";
+		echo "";
 	}
 }
 
@@ -192,7 +201,7 @@ function totalApprovedHours($id, $timeIn, $timeOut) {
 		echo round(($totalTime/3600),2);
 		}
 	} else {
-		echo "Error retrieving results from database";
+		echo "";
 	}
 }
 
@@ -213,7 +222,7 @@ function totalRejectedHours($id, $timeIn, $timeOut) {
 		echo round(($totalTime/3600),2);
 		}
 	} else {
-		echo "Error retrieving results from database";
+		echo "";
 	}
 }
 
